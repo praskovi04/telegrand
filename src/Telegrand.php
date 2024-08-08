@@ -93,6 +93,8 @@ class Telegrand
     public const ENDPOINT_GET_CHAT_MEMBER_COUNT = 'getChatMemberCount';
     public const ENDPOINT_GET_CHAT_MEMBER = 'getChatMember';
     public const ENDPOINT_SET_CHAT_PERMISSIONS = 'setChatPermissions';
+    public const ENDPOINT_APPROVE_CHAT_JOIN_REQUEST = 'approveChatJoinRequest';
+    public const ENDPOINT_SEND_VIDEO_NOTE = 'sendVideoNote';
     public const ENDPOINT_BAN_CHAT_MEMBER = 'banChatMember';
     public const ENDPOINT_UNBAN_CHAT_MEMBER = 'unbanChatMember';
     public const ENDPOINT_RESTRICT_CHAT_MEMBER = 'restrictChatMember';
