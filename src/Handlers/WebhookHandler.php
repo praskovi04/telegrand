@@ -6,17 +6,17 @@
 
 /** @noinspection PhpUnhandledExceptionInspection */
 
-namespace DefStudio\Telegraph\Handlers;
+namespace Praskovi04\Telegrand\Handlers;
 
-use DefStudio\Telegraph\DTO\CallbackQuery;
-use DefStudio\Telegraph\DTO\Chat;
-use DefStudio\Telegraph\DTO\InlineQuery;
-use DefStudio\Telegraph\DTO\Message;
-use DefStudio\Telegraph\DTO\User;
-use DefStudio\Telegraph\Exceptions\TelegramWebhookException;
-use DefStudio\Telegraph\Keyboard\Keyboard;
-use DefStudio\Telegraph\Models\TelegraphBot;
-use DefStudio\Telegraph\Models\TelegraphChat;
+use Praskovi04\Telegrand\DTO\CallbackQuery;
+use Praskovi04\Telegrand\DTO\Chat;
+use Praskovi04\Telegrand\DTO\InlineQuery;
+use Praskovi04\Telegrand\DTO\Message;
+use Praskovi04\Telegrand\DTO\User;
+use Praskovi04\Telegrand\Exceptions\TelegramWebhookException;
+use Praskovi04\Telegrand\Keyboard\Keyboard;
+use Praskovi04\Telegrand\Models\TelegraphBot;
+use Praskovi04\Telegrand\Models\TelegraphChat;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\App;
@@ -25,6 +25,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Stringable;
 use ReflectionMethod;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Throwable;
 
 abstract class WebhookHandler
 {
@@ -47,11 +48,11 @@ abstract class WebhookHandler
         $this->originalKeyboard = Keyboard::make();
     }
 
-    protected function handleCallbackQuery(): void
+    private function handleCallbackQuery(): void
     {
         $this->extractCallbackQueryData();
 
-        if (config('telegraph.debug_mode')) {
+        if (config('telegraph.debug_mode', config('telegraph.webhook.debug'))) {
             Log::debug('Telegraph webhook callback', $this->data->toArray());
         }
 
@@ -65,7 +66,7 @@ abstract class WebhookHandler
             return;
         }
 
-        /** @phpstan-ignore-next-line  */
+        /** @phpstan-ignore-next-line */
         App::call([$this, $action], $this->data->toArray());
     }
 
@@ -88,7 +89,7 @@ abstract class WebhookHandler
         if ($this->message?->chat()?->type() === Chat::TYPE_PRIVATE) {
             $command = (string) $text->after('/')->before(' ')->before('@');
 
-            if (config('telegraph.report_unknown_webhook_commands', true)) {
+            if (config('telegraph.report_unknown_webhook_commands', config('telegraph.webhook.report_unknown_commands', true))) {
                 report(TelegramWebhookException::invalidCommand($command));
             }
 
@@ -96,11 +97,11 @@ abstract class WebhookHandler
         }
     }
 
-    protected function handleMessage(): void
+    private function handleMessage(): void
     {
         $this->extractMessageData();
 
-        if (config('telegraph.debug_mode')) {
+        if (config('telegraph.debug_mode', config('telegraph.webhook.debug'))) {
             Log::debug('Telegraph webhook message', $this->data->toArray());
         }
 
@@ -220,58 +221,51 @@ abstract class WebhookHandler
 
     public function handle(Request $request, TelegraphBot $bot): void
     {
-        if (config('telegraph.debug_mode')) {
-            Log::debug('Telegraph webhook message', $this->data->toArray());
+        try {
+            $this->bot = $bot;
+
+            $this->request = $request;
+
+            if ($this->request->has('message')) {
+                /* @phpstan-ignore-next-line */
+                $this->message = Message::fromArray($this->request->input('message'));
+                $this->handleMessage();
+
+                return;
+            }
+
+            if ($this->request->has('edited_message')) {
+                /* @phpstan-ignore-next-line */
+                $this->message = Message::fromArray($this->request->input('edited_message'));
+                $this->handleMessage();
+
+                return;
+            }
+
+            if ($this->request->has('channel_post')) {
+                /* @phpstan-ignore-next-line */
+                $this->message = Message::fromArray($this->request->input('channel_post'));
+                $this->handleMessage();
+
+                return;
+            }
+
+
+            if ($this->request->has('callback_query')) {
+                /* @phpstan-ignore-next-line */
+                $this->callbackQuery = CallbackQuery::fromArray($this->request->input('callback_query'));
+                $this->handleCallbackQuery();
+            }
+
+            if ($this->request->has('inline_query')) {
+                /* @phpstan-ignore-next-line */
+                $this->handleInlineQuery(InlineQuery::fromArray($this->request->input('inline_query')));
+            }
+        } catch (Throwable $throwable) {
+            $this->onFailure($throwable);
         }
-
-        $this->bot = $bot;
-
-        $this->request = $request;
-        Log::debug($this->request);
-        if ($this->request->has('chat_join_request')) {
-            $this->handleChatJoinRequest($this->request->toArray());
-            $this->handleMessage();
-        }
-        if ($this->request->has('message')) {
-            /* @phpstan-ignore-next-line */
-            $this->message = Message::fromArray($this->request->input('message'));
-            $this->handleMessage();
-
-            return;
-        }
-
-        if ($this->request->has('edited_message')) {
-            /* @phpstan-ignore-next-line */
-            $this->message = Message::fromArray($this->request->input('edited_message'));
-            $this->handleMessage();
-
-            return;
-        }
-
-        if ($this->request->has('channel_post')) {
-            /* @phpstan-ignore-next-line */
-            $this->message = Message::fromArray($this->request->input('channel_post'));
-            $this->handleMessage();
-
-            return;
-        }
-
-
-        if ($this->request->has('callback_query')) {
-            /* @phpstan-ignore-next-line */
-            $this->callbackQuery = CallbackQuery::fromArray($this->request->input('callback_query'));
-            $this->handleCallbackQuery();
-        }
-
-        if ($this->request->has('inline_query')) {
-            /* @phpstan-ignore-next-line */
-            $this->handleInlineQuery(InlineQuery::fromArray($this->request->input('inline_query')));
-        }
-
     }
-    public function handleChatJoinRequest($request){
 
-    }
     protected function handleInlineQuery(InlineQuery $inlineQuery): void
     {
         // .. do nothing
@@ -279,7 +273,11 @@ abstract class WebhookHandler
 
     protected function setupChat(): void
     {
-        $telegramChat = $this->message?->chat() ?? $this->callbackQuery?->message()?->chat();
+        if (isset($this->message)) {
+            $telegramChat = $this->message->chat();
+        } else {
+            $telegramChat = $this->callbackQuery?->message()?->chat();
+        }
 
         assert($telegramChat !== null);
 
@@ -310,5 +308,16 @@ abstract class WebhookHandler
             $this->callbackQuery != null => config('telegraph.security.allow_callback_queries_from_unknown_chats', false),
             default => false,
         };
+    }
+
+    protected function onFailure(Throwable $throwable): void
+    {
+        if ($throwable instanceof NotFoundHttpException) {
+            throw $throwable;
+        }
+
+        report($throwable);
+
+        $this->reply(__('telegraph::errors.webhook_error_occurred'));
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace DefStudio\Telegraph\Exceptions;
+namespace Praskovi04\Telegrand\Exceptions;
 
 class TelegramWebhookException extends \Exception
 {

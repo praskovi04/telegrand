@@ -1,6 +1,6 @@
 <?php
 
-namespace DefStudio\Telegraph\Exceptions;
+namespace Praskovi04\Telegrand\Exceptions;
 
 use Carbon\CarbonInterface;
 

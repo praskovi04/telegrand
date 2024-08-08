@@ -1,6 +1,6 @@
 <?php
 
-namespace DefStudio\Telegraph\Handlers;
+namespace Praskovi04\Telegrand\Handlers;
 
 class EmptyWebhookHandler extends WebhookHandler
 {

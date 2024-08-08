@@ -1,8 +1,8 @@
 <?php
 
-namespace DefStudio\Telegraph\Exceptions;
+namespace Praskovi04\Telegrand\Exceptions;
 
-use DefStudio\Telegraph\Models\TelegraphBot;
+use Praskovi04\Telegrand\Models\TelegraphBot;
 
 class TelegramUpdatesException extends \Exception
 {

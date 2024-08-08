@@ -1,78 +1,80 @@
 <?php
 
-namespace DefStudio\Telegraph\Facades;
+namespace Praskovi04\Telegrand\Facades;
 
-use DefStudio\Telegraph\Contracts\Downloadable;
-use DefStudio\Telegraph\Keyboard\Keyboard;
-use DefStudio\Telegraph\Models\TelegraphBot;
-use DefStudio\Telegraph\Models\TelegraphChat;
-use DefStudio\Telegraph\ScopedPayloads\SetChatMenuButtonPayload;
-use DefStudio\Telegraph\ScopedPayloads\TelegraphPollPayload;
-use DefStudio\Telegraph\ScopedPayloads\TelegraphQuizPayload;
-use DefStudio\Telegraph\Support\Testing\Fakes\TelegraphFake;
+use Praskovi04\Telegrand\Contracts\Downloadable;
+use Praskovi04\Telegrand\Keyboard\Keyboard;
+use Praskovi04\Telegrand\Models\TelegraphBot;
+use Praskovi04\Telegrand\Models\TelegraphChat;
+use Praskovi04\Telegrand\ScopedPayloads\SetChatMenuButtonPayload;
+use Praskovi04\Telegrand\ScopedPayloads\TelegrandPollPayload;
+use Praskovi04\Telegrand\ScopedPayloads\TelegrandQuizPayload;
+use Praskovi04\Telegrand\Support\Testing\Fakes\TelegrandFake;
 use Illuminate\Support\Facades\Facade;
 
 /**
  * @method static string getUrl()
- * @method static \DefStudio\Telegraph\Telegraph  bot(TelegraphBot|string $bot)
- * @method static \DefStudio\Telegraph\Telegraph  chat(TelegraphChat|string $chat)
- * @method static \DefStudio\Telegraph\Telegraph  message(string $message)
- * @method static \DefStudio\Telegraph\Telegraph  withData(string $key, mixed $value)
- * @method static \DefStudio\Telegraph\Telegraph  html(string $message)
- * @method static \DefStudio\Telegraph\Telegraph  reply(int $messageId)
- * @method static \DefStudio\Telegraph\Telegraph  edit(string $messageId)
- * @method static \DefStudio\Telegraph\Telegraph  markdown(string $message)
- * @method static \DefStudio\Telegraph\Telegraph  markdownV2(string $message)
- * @method static \DefStudio\Telegraph\Telegraph  registerWebhook()
- * @method static \DefStudio\Telegraph\Telegraph  unregisterWebhook(bool $dropPendingUpdates = false)
- * @method static \DefStudio\Telegraph\Telegraph  registerBotCommands(array $commands)
- * @method static \DefStudio\Telegraph\Telegraph  getRegisteredCommands()
- * @method static \DefStudio\Telegraph\Telegraph  unregisterBotCommands()
- * @method static \DefStudio\Telegraph\Telegraph  getWebhookDebugInfo()
- * @method static \DefStudio\Telegraph\Telegraph  replyWebhook(string $callbackQueryId, string $message)
- * @method static \DefStudio\Telegraph\Telegraph  replaceKeyboard(string $messageId, Keyboard|callable $newKeyboard)
- * @method static \DefStudio\Telegraph\Telegraph  deleteKeyboard(string $messageId)
- * @method static \DefStudio\Telegraph\Telegraph  deleteMessage(string $messageId)
- * @method static \DefStudio\Telegraph\Telegraph  forwardMessage($fromChat, $messageId)
- * @method static \DefStudio\Telegraph\Telegraph  pinMessage(string $messageId)
- * @method static \DefStudio\Telegraph\Telegraph  unpinMessage(string $messageId)
- * @method static \DefStudio\Telegraph\Telegraph  unpinAllMessages()
- * @method static \DefStudio\Telegraph\Telegraph  editCaption(string $messageId)
- * @method static \DefStudio\Telegraph\Telegraph  editMedia(string $messageId)
- * @method static \DefStudio\Telegraph\Telegraph  answerInlineQuery(string $inlineQueryID, array $results)
- * @method static \DefStudio\Telegraph\Telegraph  document(string $path, string $filename = null)
- * @method static \DefStudio\Telegraph\Telegraph  photo(string $path, string $filename = null)
- * @method static \DefStudio\Telegraph\Telegraph  animation(string $path, string $filename = null)
- * @method static \DefStudio\Telegraph\Telegraph  voice(string $path, string $filename = null)
- * @method static \DefStudio\Telegraph\Telegraph  location(float $latitude, float $longitude)
- * @method static \DefStudio\Telegraph\Telegraph  contact(string $phoneNumber, string $firstName)
- * @method static \DefStudio\Telegraph\Telegraph  video(string $path, string $filename = null)
- * @method static \DefStudio\Telegraph\Telegraph  audio(string $path, string $filename = null)
- * @method static \DefStudio\Telegraph\Telegraph  dice()
- * @method static \DefStudio\Telegraph\Telegraph  botUpdates()
- * @method static \DefStudio\Telegraph\Telegraph  botInfo()
- * @method static \DefStudio\Telegraph\Telegraph  setBaseUrl(string|null $url)
- * @method static \DefStudio\Telegraph\Telegraph  setTitle(string $title)
- * @method static \DefStudio\Telegraph\Telegraph  setDescription(string $description)
- * @method static \DefStudio\Telegraph\Telegraph  setChatPhoto(string $path)
- * @method static \DefStudio\Telegraph\Telegraph  chatInfo()
- * @method static \DefStudio\Telegraph\Telegraph  generateChatPrimaryInviteLink()
- * @method static \DefStudio\Telegraph\Telegraph  createChatInviteLink()
- * @method static \DefStudio\Telegraph\Telegraph  editChatInviteLink()
- * @method static \DefStudio\Telegraph\Telegraph  revokeChatInviteLink()
- * @method static \DefStudio\Telegraph\Telegraph  chatMemberCount()
- * @method static \DefStudio\Telegraph\Telegraph  chatMember(string $userId)
- * @method static \DefStudio\Telegraph\Telegraph  setChatPermissions(array $permissions)
- * @method static \DefStudio\Telegraph\Telegraph  banChatMember(string $userId)
- * @method static \DefStudio\Telegraph\Telegraph  unbanChatMember(string $userId)
- * @method static \DefStudio\Telegraph\Telegraph  restrictChatMember(string $userId, array $permissions)
- * @method static \DefStudio\Telegraph\Telegraph  promoteChatMember(string $userId, array $permissions)
- * @method static \DefStudio\Telegraph\Telegraph  demoteChatMember(string $userId)
- * @method static \DefStudio\Telegraph\Telegraph  userProfilePhotos(string $userId)
- * @method static \DefStudio\Telegraph\Telegraph  chatMenuButton()
+ * @method static \Praskovi04\Telegrand\Telegrand  bot(TelegraphBot|string $bot)
+ * @method static \Praskovi04\Telegrand\Telegrand  chat(TelegraphChat|string $chat)
+ * @method static \Praskovi04\Telegrand\Telegrand  message(string $message)
+ * @method static \Praskovi04\Telegrand\Telegrand  withData(string $key, mixed $value)
+ * @method static \Praskovi04\Telegrand\Telegrand  inThread(string $thread_id)
+ * @method static \Praskovi04\Telegrand\Telegrand  html(string $message)
+ * @method static \Praskovi04\Telegrand\Telegrand  reply(int $messageId)
+ * @method static \Praskovi04\Telegrand\Telegrand  edit(string $messageId)
+ * @method static \Praskovi04\Telegrand\Telegrand  markdown(string $message)
+ * @method static \Praskovi04\Telegrand\Telegrand  markdownV2(string $message)
+ * @method static \Praskovi04\Telegrand\Telegrand  registerWebhook()
+ * @method static \Praskovi04\Telegrand\Telegrand  unregisterWebhook(bool $dropPendingUpdates = false)
+ * @method static \Praskovi04\Telegrand\Telegrand  registerBotCommands(array $commands)
+ * @method static \Praskovi04\Telegrand\Telegrand  getRegisteredCommands()
+ * @method static \Praskovi04\Telegrand\Telegrand  unregisterBotCommands()
+ * @method static \Praskovi04\Telegrand\Telegrand  getWebhookDebugInfo()
+ * @method static \Praskovi04\Telegrand\Telegrand  replyWebhook(string $callbackQueryId, string $message)
+ * @method static \Praskovi04\Telegrand\Telegrand  replaceKeyboard(string $messageId, Keyboard|callable $newKeyboard)
+ * @method static \Praskovi04\Telegrand\Telegrand  deleteKeyboard(string $messageId)
+ * @method static \Praskovi04\Telegrand\Telegrand  deleteMessage(string $messageId)
+ * @method static \Praskovi04\Telegrand\Telegrand  forwardMessage($fromChat, $messageId)
+ * @method static \Praskovi04\Telegrand\Telegrand  pinMessage(string $messageId)
+ * @method static \Praskovi04\Telegrand\Telegrand  unpinMessage(string $messageId)
+ * @method static \Praskovi04\Telegrand\Telegrand  unpinAllMessages()
+ * @method static \Praskovi04\Telegrand\Telegrand  editCaption(string $messageId)
+ * @method static \Praskovi04\Telegrand\Telegrand  editMedia(string $messageId)
+ * @method static \Praskovi04\Telegrand\Telegrand  answerInlineQuery(string $inlineQueryID, array $results)
+ * @method static \Praskovi04\Telegrand\Telegrand  document(string $path, string $filename = null)
+ * @method static \Praskovi04\Telegrand\Telegrand  photo(string $path, string $filename = null)
+ * @method static \Praskovi04\Telegrand\Telegrand  animation(string $path, string $filename = null)
+ * @method static \Praskovi04\Telegrand\Telegrand  voice(string $path, string $filename = null)
+ * @method static \Praskovi04\Telegrand\Telegrand  location(float $latitude, float $longitude)
+ * @method static \Praskovi04\Telegrand\Telegrand  contact(string $phoneNumber, string $firstName)
+ * @method static \Praskovi04\Telegrand\Telegrand  video(string $path, string $filename = null)
+ * @method static \Praskovi04\Telegrand\Telegrand  audio(string $path, string $filename = null)
+ * @method static \Praskovi04\Telegrand\Telegrand  dice()
+ * @method static \Praskovi04\Telegrand\Telegrand  mediaGroup(string $path, array $media)
+ * @method static \Praskovi04\Telegrand\Telegrand  botUpdates()
+ * @method static \Praskovi04\Telegrand\Telegrand  botInfo()
+ * @method static \Praskovi04\Telegrand\Telegrand  setBaseUrl(string|null $url)
+ * @method static \Praskovi04\Telegrand\Telegrand  setTitle(string $title)
+ * @method static \Praskovi04\Telegrand\Telegrand  setDescription(string $description)
+ * @method static \Praskovi04\Telegrand\Telegrand  setChatPhoto(string $path)
+ * @method static \Praskovi04\Telegrand\Telegrand  chatInfo()
+ * @method static \Praskovi04\Telegrand\Telegrand  generateChatPrimaryInviteLink()
+ * @method static \Praskovi04\Telegrand\Telegrand  createChatInviteLink()
+ * @method static \Praskovi04\Telegrand\Telegrand  editChatInviteLink()
+ * @method static \Praskovi04\Telegrand\Telegrand  revokeChatInviteLink()
+ * @method static \Praskovi04\Telegrand\Telegrand  chatMemberCount()
+ * @method static \Praskovi04\Telegrand\Telegrand  chatMember(string $userId)
+ * @method static \Praskovi04\Telegrand\Telegrand  setChatPermissions(array $permissions)
+ * @method static \Praskovi04\Telegrand\Telegrand  banChatMember(string $userId)
+ * @method static \Praskovi04\Telegrand\Telegrand  unbanChatMember(string $userId)
+ * @method static \Praskovi04\Telegrand\Telegrand  restrictChatMember(string $userId, array $permissions)
+ * @method static \Praskovi04\Telegrand\Telegrand  promoteChatMember(string $userId, array $permissions)
+ * @method static \Praskovi04\Telegrand\Telegrand  demoteChatMember(string $userId)
+ * @method static \Praskovi04\Telegrand\Telegrand  userProfilePhotos(string $userId)
+ * @method static \Praskovi04\Telegrand\Telegrand  chatMenuButton()
  * @method static SetChatMenuButtonPayload  setChatMenuButton()
- * @method static TelegraphPollPayload poll(string $question)
- * @method static TelegraphQuizPayload quiz(string $question)
+ * @method static TelegrandPollPayload poll(string $question)
+ * @method static TelegrandQuizPayload quiz(string $question)
  * @method static string store(Downloadable $attachment, string $path, string $filename = null)
  * @method static void  dumpSentData()
  * @method static void  assertSentData(string $endpoint, array $data = null, bool $exact = true)
@@ -86,7 +88,7 @@ use Illuminate\Support\Facades\Facade;
  * @method static void  assertRepliedWebhookIsAlert()
  * @method static void  assertStoredFile(string $fileId)
  *
- * @see \DefStudio\Telegraph\Telegraph
+ * @see \Praskovi04\Telegrand\Telegrand
  */
 class Telegraph extends Facade
 {
@@ -95,10 +97,10 @@ class Telegraph extends Facade
     /**
      * @param array<string, array<mixed>> $replies
      */
-    public static function fake(array $replies = []): TelegraphFake
+    public static function fake(array $replies = []): TelegrandFake
     {
-        TelegraphFake::reset();
-        static::swap($fake = new TelegraphFake($replies));
+        TelegrandFake::reset();
+        static::swap($fake = new TelegrandFake($replies));
 
         return $fake;
     }
@@ -106,7 +108,7 @@ class Telegraph extends Facade
     public static function getFacadeRoot()
     {
         $instance = parent::getFacadeRoot();
-        if ($instance instanceof TelegraphFake) {
+        if ($instance instanceof TelegrandFake) {
             $instance->prepareForNewRequest();
         }
 
