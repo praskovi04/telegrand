@@ -1,12 +1,12 @@
 {
-    "name": "defstudio/telegraph",
+    "name": "praskovi04/telegrand",
     "description": "A laravel facade to interact with Telegram Bots",
     "keywords": [
         "defstudio",
         "laravel",
         "telegraph"
     ],
-    "homepage": "https://github.com/defstudio/telegraph",
+    "homepage": "https://github.com/praskovi04/telegrand",
     "license": "MIT",
     "authors": [
         {
