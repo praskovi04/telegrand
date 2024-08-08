@@ -4,7 +4,7 @@
 
 namespace Praskovi04\Telegrand\DTO;
 
-use Praskovi04\Telegrand\Telegraph;
+use Praskovi04\Telegrand\Telegrand;
 
 class InlineQueryResultDocument extends InlineQueryResult
 {
@@ -68,21 +68,21 @@ class InlineQueryResultDocument extends InlineQueryResult
 
     public function html(): static
     {
-        $this->parseMode = Telegraph::PARSE_HTML;
+        $this->parseMode = Telegrand::PARSE_HTML;
 
         return $this;
     }
 
     public function markdown(): static
     {
-        $this->parseMode = Telegraph::PARSE_MARKDOWN;
+        $this->parseMode = Telegrand::PARSE_MARKDOWN;
 
         return $this;
     }
 
     public function markdownV2(): static
     {
-        $this->parseMode = Telegraph::PARSE_MARKDOWNV2;
+        $this->parseMode = Telegrand::PARSE_MARKDOWNV2;
 
         return $this;
     }
@@ -95,7 +95,7 @@ class InlineQueryResultDocument extends InlineQueryResult
         return array_filter([
             'title' => $this->title,
             'caption' => $this->caption,
-            'parse_mode' => $this->parseMode ?? config('telegraph.default_parse_mode', Telegraph::PARSE_HTML),
+            'parse_mode' => $this->parseMode ?? config('telegraph.default_parse_mode', Telegrand::PARSE_HTML),
             'document_url' => $this->url,
             'mime_type' => $this->mimeType,
             'description' => $this->description,

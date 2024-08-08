@@ -17,12 +17,12 @@ use Praskovi04\Telegrand\Exceptions\TelegraphException;
 use Praskovi04\Telegrand\Models\TelegraphBot;
 use Praskovi04\Telegrand\Models\TelegraphChat;
 use Praskovi04\Telegrand\ScopedPayloads\SetChatMenuButtonPayload;
-use Praskovi04\Telegrand\Telegraph;
+use Praskovi04\Telegrand\Telegrand;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\File;
 
 /**
- * @mixin Telegraph
+ * @mixin Telegrand
  */
 trait HasBotsAndChats
 {
@@ -30,7 +30,7 @@ trait HasBotsAndChats
 
     protected TelegraphChat|string|null $chat;
 
-    public function bot(TelegraphBot|string $bot): Telegraph
+    public function bot(TelegraphBot|string $bot): Telegrand
     {
         $telegraph = clone $this;
 
@@ -39,7 +39,7 @@ trait HasBotsAndChats
         return $telegraph;
     }
 
-    public function chat(TelegraphChat|string $chat): Telegraph
+    public function chat(TelegraphChat|string $chat): Telegrand
     {
         $telegraph = clone $this;
 
@@ -117,7 +117,7 @@ trait HasBotsAndChats
         return $chat;
     }
 
-    public function leaveChat(): Telegraph
+    public function leaveChat(): Telegrand
     {
         $telegraph = clone $this;
 
@@ -127,7 +127,7 @@ trait HasBotsAndChats
         return $telegraph;
     }
 
-    public function botInfo(): Telegraph
+    public function botInfo(): Telegrand
     {
         $telegraph = clone $this;
 
@@ -139,7 +139,7 @@ trait HasBotsAndChats
     /**
      * @param string[]|null $allowedUpdates
      */
-    public function botUpdates(int $timeout = null, int $offset = null, int $limit = null, array $allowedUpdates = null): Telegraph
+    public function botUpdates(int $timeout = null, int $offset = null, int $limit = null, array $allowedUpdates = null): Telegrand
     {
         $telegraph = clone $this;
 
@@ -164,7 +164,7 @@ trait HasBotsAndChats
         return $telegraph;
     }
 
-    public function chatAction(string $action): Telegraph
+    public function chatAction(string $action): Telegrand
     {
         $telegraph = clone $this;
 
@@ -177,7 +177,7 @@ trait HasBotsAndChats
         return $telegraph;
     }
 
-    public function setTitle(string $title): Telegraph
+    public function setTitle(string $title): Telegrand
     {
         $telegraph = clone $this;
 
@@ -191,7 +191,7 @@ trait HasBotsAndChats
         return $telegraph;
     }
 
-    public function setDescription(string $description): Telegraph
+    public function setDescription(string $description): Telegrand
     {
         $telegraph = clone $this;
 
@@ -204,7 +204,7 @@ trait HasBotsAndChats
         return $telegraph;
     }
 
-    public function setChatPhoto(string $path): Telegraph
+    public function setChatPhoto(string $path): Telegrand
     {
         $telegraph = clone $this;
 
@@ -245,7 +245,7 @@ trait HasBotsAndChats
         return $telegraph;
     }
 
-    public function deleteChatPhoto(): Telegraph
+    public function deleteChatPhoto(): Telegrand
     {
         $telegraph = clone $this;
 
@@ -255,7 +255,7 @@ trait HasBotsAndChats
         return $telegraph;
     }
 
-    public function chatInfo(): Telegraph
+    public function chatInfo(): Telegrand
     {
         $telegraph = clone $this;
 
@@ -278,7 +278,7 @@ trait HasBotsAndChats
         return SetChatMenuButtonPayload::makeFrom($telegraph);
     }
 
-    public function chatMenuButton(): Telegraph
+    public function chatMenuButton(): Telegrand
     {
         $telegraph = clone $this;
 
@@ -287,7 +287,7 @@ trait HasBotsAndChats
         return $telegraph;
     }
 
-    public function generateChatPrimaryInviteLink(): Telegraph
+    public function generateChatPrimaryInviteLink(): Telegrand
     {
         $telegraph = clone $this;
 
@@ -297,7 +297,7 @@ trait HasBotsAndChats
         return $telegraph;
     }
 
-    public function createChatInviteLink(): Telegraph
+    public function createChatInviteLink(): Telegrand
     {
         $telegraph = clone $this;
 
@@ -307,7 +307,7 @@ trait HasBotsAndChats
         return $telegraph;
     }
 
-    public function expire(Carbon $expiration): Telegraph
+    public function expire(Carbon $expiration): Telegrand
     {
         $telegraph = clone $this;
 
@@ -316,7 +316,7 @@ trait HasBotsAndChats
         return $telegraph;
     }
 
-    public function name(string $name): Telegraph
+    public function name(string $name): Telegrand
     {
         $telegraph = clone $this;
 
@@ -325,7 +325,7 @@ trait HasBotsAndChats
         return $telegraph;
     }
 
-    public function memberLimit(int $limit): Telegraph
+    public function memberLimit(int $limit): Telegrand
     {
         $telegraph = clone $this;
 
@@ -334,7 +334,7 @@ trait HasBotsAndChats
         return $telegraph;
     }
 
-    public function withJoinRequest(bool $enable = true): Telegraph
+    public function withJoinRequest(bool $enable = true): Telegrand
     {
         $telegraph = clone $this;
 
@@ -343,7 +343,7 @@ trait HasBotsAndChats
         return $telegraph;
     }
 
-    public function editChatInviteLink(string $link): Telegraph
+    public function editChatInviteLink(string $link): Telegrand
     {
         $telegraph = clone $this;
 
@@ -354,7 +354,7 @@ trait HasBotsAndChats
         return $telegraph;
     }
 
-    public function revokeChatInviteLink(string $link): Telegraph
+    public function revokeChatInviteLink(string $link): Telegrand
     {
         $telegraph = clone $this;
 
@@ -365,7 +365,7 @@ trait HasBotsAndChats
         return $telegraph;
     }
 
-    public function chatMemberCount(): Telegraph
+    public function chatMemberCount(): Telegrand
     {
         $telegraph = clone $this;
 
@@ -375,7 +375,7 @@ trait HasBotsAndChats
         return $telegraph;
     }
 
-    public function chatMember(string $userId): Telegraph
+    public function chatMember(string $userId): Telegrand
     {
         $telegraph = clone $this;
 
@@ -389,7 +389,7 @@ trait HasBotsAndChats
     /**
      * @param array<int|string, string|bool> $permissions
      */
-    public function setChatPermissions(array $permissions): Telegraph
+    public function setChatPermissions(array $permissions): Telegrand
     {
         $telegraph = clone $this;
 
@@ -408,7 +408,7 @@ trait HasBotsAndChats
         return $telegraph;
     }
 
-    public function banChatMember(string $userId): Telegraph
+    public function banChatMember(string $userId): Telegrand
     {
         $telegraph = clone $this;
 
@@ -419,7 +419,7 @@ trait HasBotsAndChats
         return $telegraph;
     }
 
-    public function until(Carbon $date): Telegraph
+    public function until(Carbon $date): Telegrand
     {
         $telegraph = clone $this;
 
@@ -428,7 +428,7 @@ trait HasBotsAndChats
         return $telegraph;
     }
 
-    public function andRevokeMessages(): Telegraph
+    public function andRevokeMessages(): Telegrand
     {
         $telegraph = clone $this;
 
@@ -437,7 +437,7 @@ trait HasBotsAndChats
         return $telegraph;
     }
 
-    public function unbanChatMember(string $userId): Telegraph
+    public function unbanChatMember(string $userId): Telegrand
     {
         $telegraph = clone $this;
 
@@ -452,7 +452,7 @@ trait HasBotsAndChats
     /**
      * @param array<int|string, string|bool> $permissions
      */
-    public function restrictChatMember(string $userId, array $permissions): Telegraph
+    public function restrictChatMember(string $userId, array $permissions): Telegrand
     {
         $telegraph = clone $this;
 
@@ -477,7 +477,7 @@ trait HasBotsAndChats
     /**
      * @param array<int|string, string|bool> $permissions
      */
-    public function promoteChatMember(string $userId, array $permissions): Telegraph
+    public function promoteChatMember(string $userId, array $permissions): Telegrand
     {
         $telegraph = clone $this;
 
@@ -500,7 +500,7 @@ trait HasBotsAndChats
         return $telegraph;
     }
 
-    public function demoteChatMember(string $userId): Telegraph
+    public function demoteChatMember(string $userId): Telegrand
     {
         $telegraph = clone $this;
 

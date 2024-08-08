@@ -10,13 +10,13 @@ namespace Praskovi04\Telegrand\Concerns;
 
 use Praskovi04\Telegrand\DTO\Attachment;
 use Praskovi04\Telegrand\Exceptions\FileException;
-use Praskovi04\Telegrand\ScopedPayloads\TelegraphEditMediaPayload;
-use Praskovi04\Telegrand\Telegraph;
+use Praskovi04\Telegrand\ScopedPayloads\TelegrandEditMediaPayload;
+use Praskovi04\Telegrand\Telegrand;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 
 /**
- * @mixin Telegraph
+ * @mixin Telegrand
  */
 trait SendsAttachments
 {
@@ -45,7 +45,7 @@ trait SendsAttachments
         return $data;
     }
 
-    public function editCaption(int $messageId): Telegraph
+    public function editCaption(int $messageId): Telegrand
     {
         $telegraph = clone $this;
 
@@ -55,7 +55,7 @@ trait SendsAttachments
         return $telegraph;
     }
 
-    public function editMedia(int $messageId): TelegraphEditMediaPayload
+    public function editMedia(int $messageId): TelegrandEditMediaPayload
     {
         $telegraph = clone $this;
 
@@ -64,7 +64,7 @@ trait SendsAttachments
         $telegraph->data['chat_id'] = $telegraph->getChatId();
         $telegraph->data['message_id'] = $messageId;
 
-        return TelegraphEditMediaPayload::makeFrom($telegraph);
+        return TelegrandEditMediaPayload::makeFrom($telegraph);
     }
 
     public function location(float $latitude, float $longitude): self

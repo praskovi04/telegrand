@@ -2,12 +2,12 @@
 
 namespace Praskovi04\Telegrand\Concerns;
 
-use Praskovi04\Telegrand\Telegraph;
+use Praskovi04\Telegrand\Telegrand;
 use ReflectionClass;
 
 trait BuildsFromTelegraphClass
 {
-    public static function makeFrom(Telegraph $telegraph): self
+    public static function makeFrom(Telegrand $telegraph): self
     {
         $newInstance = new self();
 

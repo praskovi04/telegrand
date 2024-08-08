@@ -6,15 +6,15 @@
 namespace Praskovi04\Telegrand\Concerns;
 
 use Praskovi04\Telegrand\Exceptions\BotCommandException;
-use Praskovi04\Telegrand\Telegraph;
+use Praskovi04\Telegrand\Telegrand;
 
 /**
- * @mixin Telegraph
+ * @mixin Telegrand
  */
 
 trait InteractsWithCommands
 {
-    public function getRegisteredCommands(): Telegraph
+    public function getRegisteredCommands(): Telegrand
     {
         $telegraph = clone $this;
 
@@ -26,7 +26,7 @@ trait InteractsWithCommands
     /**
      * @param array<string, string> $commands
      */
-    public function registerBotCommands(array $commands): Telegraph
+    public function registerBotCommands(array $commands): Telegrand
     {
         $telegraph = clone $this;
 
@@ -54,7 +54,7 @@ trait InteractsWithCommands
         return $telegraph;
     }
 
-    public function unregisterBotCommands(): Telegraph
+    public function unregisterBotCommands(): Telegrand
     {
         $telegraph = clone $this;
 

@@ -6,17 +6,17 @@ namespace Praskovi04\Telegrand\Concerns;
 
 use Praskovi04\Telegrand\DTO\InlineQueryResult;
 use Praskovi04\Telegrand\Exceptions\InlineQueryException;
-use Praskovi04\Telegrand\Telegraph;
+use Praskovi04\Telegrand\Telegrand;
 
 /**
- * @mixin Telegraph
+ * @mixin Telegrand
  */
 trait AnswersInlineQueries
 {
     /**
      * @param InlineQueryResult[] $results
      */
-    public function answerInlineQuery(string $inlineQueryID, array $results): Telegraph
+    public function answerInlineQuery(string $inlineQueryID, array $results): Telegrand
     {
         $telegraph = clone $this;
 
@@ -29,7 +29,7 @@ trait AnswersInlineQueries
         return $telegraph;
     }
 
-    public function cache(int $seconds): Telegraph
+    public function cache(int $seconds): Telegrand
     {
         $telegraph = clone $this;
         $telegraph->data['cache_time'] = $seconds;
@@ -37,7 +37,7 @@ trait AnswersInlineQueries
         return $telegraph;
     }
 
-    public function personal(): Telegraph
+    public function personal(): Telegrand
     {
         $telegraph = clone $this;
         $telegraph->data['is_personal'] = true;
@@ -45,7 +45,7 @@ trait AnswersInlineQueries
         return $telegraph;
     }
 
-    public function nextOffset(string $offset): Telegraph
+    public function nextOffset(string $offset): Telegrand
     {
         $telegraph = clone $this;
         $telegraph->data['next_offset'] = $offset;
@@ -53,7 +53,7 @@ trait AnswersInlineQueries
         return $telegraph;
     }
 
-    public function offertToSwitchToPrivateMessage(string $text, string $parameter): Telegraph
+    public function offertToSwitchToPrivateMessage(string $text, string $parameter): Telegrand
     {
         if (!preg_match("#^[a-zA-Z\d_-]+$#", $parameter)) {
             throw InlineQueryException::invalidSwitchToPmParameter($parameter);

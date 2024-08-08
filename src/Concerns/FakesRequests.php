@@ -5,7 +5,7 @@
 namespace Praskovi04\Telegrand\Concerns;
 
 use Praskovi04\Telegrand\Contracts\Downloadable;
-use Praskovi04\Telegrand\Telegraph;
+use Praskovi04\Telegrand\Telegrand;
 use GuzzleHttp\Psr7\BufferStream;
 use Illuminate\Foundation\Bus\PendingDispatch;
 use Illuminate\Http\Client\Response;
@@ -137,7 +137,7 @@ trait FakesRequests
         };
 
         $response = $this->replies[$this->endpoint] ?? match ($this->endpoint) {
-            Telegraph::ENDPOINT_MESSAGE => [
+            Telegrand::ENDPOINT_MESSAGE => [
                 'ok' => true,
                 'result' => [
                     'message_id' => rand(1, 99999),
@@ -150,7 +150,7 @@ trait FakesRequests
                     'text' => $this->data['text'],
                 ],
             ],
-            Telegraph::ENDPOINT_GET_BOT_INFO => [
+            Telegrand::ENDPOINT_GET_BOT_INFO => [
                 'ok' => true,
                 'result' => [
                     'id' => 42,
@@ -162,7 +162,7 @@ trait FakesRequests
                     'supports_inline_queries' => false,
                 ],
             ],
-            Telegraph::ENDPOINT_GET_CHAT_INFO => [
+            Telegrand::ENDPOINT_GET_CHAT_INFO => [
                 'ok' => true,
                 'result' => [
                     'id' => 42,
@@ -174,11 +174,11 @@ trait FakesRequests
                     'has_protected_content' => true,
                 ],
             ],
-            Telegraph::ENDPOINT_GET_CHAT_MEMBER_COUNT => [
+            Telegrand::ENDPOINT_GET_CHAT_MEMBER_COUNT => [
                 'ok' => true,
                 'result' => 1,
             ],
-            Telegraph::ENDPOINT_GET_BOT_UPDATES => [
+            Telegrand::ENDPOINT_GET_BOT_UPDATES => [
                 'ok' => true,
                 'result' => [
                     [

@@ -5,11 +5,11 @@
 namespace Praskovi04\Telegrand\Concerns;
 
 use Praskovi04\Telegrand\Models\TelegraphChat;
-use Praskovi04\Telegrand\Telegraph;
+use Praskovi04\Telegrand\Telegrand;
 
 trait ComposesMessages
 {
-    public function message(string $message): Telegraph
+    public function message(string $message): Telegrand
     {
         $telegraph = clone $this;
 
@@ -28,7 +28,7 @@ trait ComposesMessages
         $this->data['chat_id'] = $this->getChatId();
     }
 
-    public function html(string $message = null): Telegraph
+    public function html(string $message = null): Telegrand
     {
         $telegraph = clone $this;
 
@@ -36,12 +36,12 @@ trait ComposesMessages
             $telegraph->setMessageText($message);
         }
 
-        $telegraph->data['parse_mode'] = Telegraph::PARSE_HTML;
+        $telegraph->data['parse_mode'] = Telegrand::PARSE_HTML;
 
         return $telegraph;
     }
 
-    public function markdown(string $message = null): Telegraph
+    public function markdown(string $message = null): Telegrand
     {
         $telegraph = clone $this;
 
@@ -49,12 +49,12 @@ trait ComposesMessages
             $telegraph->setMessageText($message);
         }
 
-        $telegraph->data['parse_mode'] = Telegraph::PARSE_MARKDOWN;
+        $telegraph->data['parse_mode'] = Telegrand::PARSE_MARKDOWN;
 
         return $telegraph;
     }
 
-    public function markdownV2(string $message = null): Telegraph
+    public function markdownV2(string $message = null): Telegrand
     {
         $telegraph = clone $this;
 
@@ -62,12 +62,12 @@ trait ComposesMessages
             $telegraph->setMessageText($message);
         }
 
-        $telegraph->data['parse_mode'] = Telegraph::PARSE_MARKDOWNV2;
+        $telegraph->data['parse_mode'] = Telegrand::PARSE_MARKDOWNV2;
 
         return $telegraph;
     }
 
-    public function reply(int $messageId): Telegraph
+    public function reply(int $messageId): Telegrand
     {
         $telegraph = clone $this;
 
@@ -76,7 +76,7 @@ trait ComposesMessages
         return $telegraph;
     }
 
-    public function protected(): Telegraph
+    public function protected(): Telegrand
     {
         $telegraph = clone $this;
 
@@ -85,7 +85,7 @@ trait ComposesMessages
         return $telegraph;
     }
 
-    public function silent(): Telegraph
+    public function silent(): Telegrand
     {
         $telegraph = clone $this;
 
@@ -94,7 +94,7 @@ trait ComposesMessages
         return $telegraph;
     }
 
-    public function withoutPreview(): Telegraph
+    public function withoutPreview(): Telegrand
     {
         $telegraph = clone $this;
 
@@ -103,7 +103,7 @@ trait ComposesMessages
         return $telegraph;
     }
 
-    public function edit(int $messageId): Telegraph
+    public function edit(int $messageId): Telegrand
     {
         $telegraph = clone $this;
 
@@ -113,7 +113,7 @@ trait ComposesMessages
         return $telegraph;
     }
 
-    public function deleteMessage(int $messageId): Telegraph
+    public function deleteMessage(int $messageId): Telegrand
     {
         $telegraph = clone $this;
 
@@ -129,7 +129,7 @@ trait ComposesMessages
     /**
      * @param array<int> $messageIds
      */
-    public function deleteMessages(array $messageIds): Telegraph
+    public function deleteMessages(array $messageIds): Telegrand
     {
         $telegraph = clone $this;
 
@@ -142,7 +142,7 @@ trait ComposesMessages
         return $telegraph;
     }
 
-    public function pinMessage(int $messageId): Telegraph
+    public function pinMessage(int $messageId): Telegrand
     {
         $telegraph = clone $this;
 
@@ -155,7 +155,7 @@ trait ComposesMessages
         return $telegraph;
     }
 
-    public function unpinMessage(int $messageId): Telegraph
+    public function unpinMessage(int $messageId): Telegrand
     {
         $telegraph = clone $this;
 
@@ -168,7 +168,7 @@ trait ComposesMessages
         return $telegraph;
     }
 
-    public function unpinAllMessages(): Telegraph
+    public function unpinAllMessages(): Telegrand
     {
         $telegraph = clone $this;
 
@@ -180,7 +180,7 @@ trait ComposesMessages
         return $telegraph;
     }
 
-    public function forwardMessage(TelegraphChat|int $fromChat, int $messageId): Telegraph
+    public function forwardMessage(TelegraphChat|int $fromChat, int $messageId): Telegrand
     {
         $fromChatId = is_int($fromChat) ? $fromChat : $fromChat->chat_id;
 
@@ -196,7 +196,7 @@ trait ComposesMessages
         return $telegraph;
     }
 
-    public function copyMessage(TelegraphChat|int $fromChat, int $messageId): Telegraph
+    public function copyMessage(TelegraphChat|int $fromChat, int $messageId): Telegrand
     {
         $fromChatId = is_int($fromChat) ? $fromChat : $fromChat->chat_id;
 

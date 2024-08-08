@@ -11,17 +11,17 @@ namespace Praskovi04\Telegrand\Concerns;
 use Praskovi04\Telegrand\Exceptions\KeyboardException;
 use Praskovi04\Telegrand\Keyboard\Keyboard;
 use Praskovi04\Telegrand\Keyboard\ReplyKeyboard;
-use Praskovi04\Telegrand\Telegraph;
+use Praskovi04\Telegrand\Telegrand;
 
 /**
- * @mixin Telegraph
+ * @mixin Telegrand
  */
 trait ManagesKeyboards
 {
     /**
      * @param array<array-key, array<array-key, array{text: string, url?: string, callback_data?: string, web_app?: string[], login_url?: string[]}>>|Keyboard|callable(Keyboard):Keyboard $keyboard
      */
-    public function keyboard(callable|array|Keyboard $keyboard): Telegraph
+    public function keyboard(callable|array|Keyboard $keyboard): Telegrand
     {
         $telegraph = clone $this;
 
@@ -41,7 +41,7 @@ trait ManagesKeyboards
     /**
      * @param array<array-key, array<array-key, array{text: string, request_contact?: bool, request_location?: bool, request_poll?: string[], web_app?: string[]}>>|ReplyKeyboard|callable(ReplyKeyboard):ReplyKeyboard $keyboard
      */
-    public function replyKeyboard(callable|array|ReplyKeyboard $keyboard): Telegraph
+    public function replyKeyboard(callable|array|ReplyKeyboard $keyboard): Telegrand
     {
         $telegraph = clone $this;
 
@@ -62,7 +62,7 @@ trait ManagesKeyboards
         return $telegraph;
     }
 
-    public function forceReply(string $placeholder = '', bool $selective = false): Telegraph
+    public function forceReply(string $placeholder = '', bool $selective = false): Telegrand
     {
         $telegraph = clone $this;
 
@@ -79,7 +79,7 @@ trait ManagesKeyboards
         return $telegraph;
     }
 
-    public function removeReplyKeyboard(bool $selective = false): Telegraph
+    public function removeReplyKeyboard(bool $selective = false): Telegrand
     {
         $telegraph = clone $this;
 
@@ -94,7 +94,7 @@ trait ManagesKeyboards
     /**
      * @param Keyboard|callable(Keyboard):Keyboard $newKeyboard
      */
-    public function replaceKeyboard(int $messageId, Keyboard|callable $newKeyboard): Telegraph
+    public function replaceKeyboard(int $messageId, Keyboard|callable $newKeyboard): Telegrand
     {
         $telegraph = clone $this;
 
@@ -118,7 +118,7 @@ trait ManagesKeyboards
         return $telegraph;
     }
 
-    public function deleteKeyboard(int $messageId): Telegraph
+    public function deleteKeyboard(int $messageId): Telegrand
     {
         $telegraph = clone $this;
 

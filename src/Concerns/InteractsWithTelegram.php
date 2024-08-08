@@ -6,7 +6,7 @@ namespace Praskovi04\Telegrand\Concerns;
 
 use Praskovi04\Telegrand\DTO\Attachment;
 use Praskovi04\Telegrand\Jobs\SendRequestToTelegramJob;
-use Praskovi04\Telegrand\Telegraph;
+use Praskovi04\Telegrand\Telegrand;
 use Illuminate\Foundation\Bus\PendingDispatch;
 use Illuminate\Http\Client\PendingRequest;
 use Illuminate\Http\Client\Response;
@@ -15,7 +15,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Stringable;
 
 /**
- * @mixin Telegraph
+ * @mixin Telegrand
  */
 trait InteractsWithTelegram
 {
@@ -75,7 +75,7 @@ trait InteractsWithTelegram
         return SendRequestToTelegramJob::dispatch($this->getApiUrl(), $this->prepareData(), $this->files)->onQueue($queue);
     }
 
-    public function setBaseUrl(string|null $url): Telegraph
+    public function setBaseUrl(string|null $url): Telegrand
     {
         $telegraph = clone $this;
 

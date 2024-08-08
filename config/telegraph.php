@@ -1,6 +1,6 @@
 <?php
 
-use Praskovi04\Telegrand\Telegraph;
+use Praskovi04\Telegrand\Telegrand;
 
 return [
     /*
@@ -13,7 +13,7 @@ return [
      * Sets Telegraph messages default parse mode
      * allowed values: html|markdown|MarkdownV2
      */
-    'default_parse_mode' => Telegraph::PARSE_HTML,
+    'default_parse_mode' => Telegrand::PARSE_HTML,
 
     'webhook' => [
         /*

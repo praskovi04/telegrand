@@ -6,12 +6,12 @@ namespace Praskovi04\Telegrand\Concerns;
 
 use Carbon\CarbonInterface;
 use Praskovi04\Telegrand\Exceptions\TelegraphPollException;
-use Praskovi04\Telegrand\ScopedPayloads\TelegraphPollPayload;
-use Praskovi04\Telegrand\ScopedPayloads\TelegraphQuizPayload;
+use Praskovi04\Telegrand\ScopedPayloads\TelegrandPollPayload;
+use Praskovi04\Telegrand\ScopedPayloads\TelegrandQuizPayload;
 
 /**
- * @mixin TelegraphPollPayload
- * @mixin TelegraphQuizPayload
+ * @mixin TelegrandPollPayload
+ * @mixin TelegrandQuizPayload
  */
 trait SendsPolls
 {

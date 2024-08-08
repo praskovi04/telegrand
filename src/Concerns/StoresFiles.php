@@ -6,7 +6,7 @@ namespace Praskovi04\Telegrand\Concerns;
 
 use Praskovi04\Telegrand\Contracts\Downloadable;
 use Praskovi04\Telegrand\Exceptions\FileException;
-use Praskovi04\Telegrand\Telegraph;
+use Praskovi04\Telegrand\Telegrand;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Http;
@@ -14,7 +14,7 @@ use Illuminate\Support\Str;
 
 trait StoresFiles
 {
-    public function getFileInfo(string $fileId): Telegraph
+    public function getFileInfo(string $fileId): Telegrand
     {
         $telegraph = clone $this;
 

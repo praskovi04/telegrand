@@ -5,15 +5,15 @@
 
 namespace Praskovi04\Telegrand\Concerns;
 
-use Praskovi04\Telegrand\Telegraph;
+use Praskovi04\Telegrand\Telegrand;
 
 /**
- * @mixin Telegraph
+ * @mixin Telegrand
  */
 
 trait InteractWithUsers
 {
-    public function userProfilePhotos(string $userId): Telegraph
+    public function userProfilePhotos(string $userId): Telegrand
     {
         $telegraph = clone $this;
 

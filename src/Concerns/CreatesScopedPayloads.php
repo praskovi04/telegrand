@@ -2,21 +2,21 @@
 
 namespace Praskovi04\Telegrand\Concerns;
 
-use Praskovi04\Telegrand\ScopedPayloads\TelegraphPollPayload;
-use Praskovi04\Telegrand\ScopedPayloads\TelegraphQuizPayload;
+use Praskovi04\Telegrand\ScopedPayloads\TelegrandPollPayload;
+use Praskovi04\Telegrand\ScopedPayloads\TelegrandQuizPayload;
 
 trait CreatesScopedPayloads
 {
-    public function poll(string $question): TelegraphPollPayload
+    public function poll(string $question): TelegrandPollPayload
     {
-        $poolPayload = TelegraphPollPayload::makeFrom($this);
+        $poolPayload = TelegrandPollPayload::makeFrom($this);
 
         return $poolPayload->poll($question);
     }
 
-    public function quiz(string $question): TelegraphQuizPayload
+    public function quiz(string $question): TelegrandQuizPayload
     {
-        $quizPayload = TelegraphQuizPayload::makeFrom($this);
+        $quizPayload = TelegrandQuizPayload::makeFrom($this);
 
         return $quizPayload->quiz($question);
     }

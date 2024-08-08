@@ -5,10 +5,10 @@
 namespace Praskovi04\Telegrand\Concerns;
 
 use Praskovi04\Telegrand\Exceptions\TelegramWebhookException;
-use Praskovi04\Telegrand\Telegraph;
+use Praskovi04\Telegrand\Telegrand;
 
 /**
- * @mixin Telegraph
+ * @mixin Telegrand
  */
 trait InteractsWithWebhooks
 {
@@ -29,7 +29,7 @@ trait InteractsWithWebhooks
         return $customWebhookUrl . route('telegraph.webhook', $this->getBot(), false);
     }
 
-    public function registerWebhook(): Telegraph
+    public function registerWebhook(): Telegrand
     {
         $telegraph = clone $this;
 
@@ -41,7 +41,7 @@ trait InteractsWithWebhooks
         return $telegraph;
     }
 
-    public function unregisterWebhook(bool $dropPendingUpdates = false): Telegraph
+    public function unregisterWebhook(bool $dropPendingUpdates = false): Telegrand
     {
         $telegraph = clone $this;
 
@@ -53,7 +53,7 @@ trait InteractsWithWebhooks
         return $telegraph;
     }
 
-    public function getWebhookDebugInfo(): Telegraph
+    public function getWebhookDebugInfo(): Telegrand
     {
         $telegraph = clone $this;
 
@@ -62,7 +62,7 @@ trait InteractsWithWebhooks
         return $telegraph;
     }
 
-    public function replyWebhook(int $callbackQueryId, string $message, bool $showAlert = false): Telegraph
+    public function replyWebhook(int $callbackQueryId, string $message, bool $showAlert = false): Telegrand
     {
         $telegraph = clone $this;
 
