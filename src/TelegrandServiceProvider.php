@@ -10,7 +10,7 @@ use Praskovi04\Telegrand\Commands\UnsetTelegramWebhookCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
-class TelegraphServiceProvider extends PackageServiceProvider
+class TelegrandServiceProvider extends PackageServiceProvider
 {
     public function configurePackage(Package $package): void
     {
