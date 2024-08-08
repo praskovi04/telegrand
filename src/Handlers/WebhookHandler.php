@@ -261,11 +261,17 @@ abstract class WebhookHandler
                 /* @phpstan-ignore-next-line */
                 $this->handleInlineQuery(InlineQuery::fromArray($this->request->input('inline_query')));
             }
+            if ($this->request->has('chat_join_request')) {
+            $this->handleChatJoinRequest($this->request->toArray());
+            }
         } catch (Throwable $throwable) {
             $this->onFailure($throwable);
         }
     }
 
+     public function handleChatJoinRequest($request){
+
+    }
     protected function handleInlineQuery(InlineQuery $inlineQuery): void
     {
         // .. do nothing
