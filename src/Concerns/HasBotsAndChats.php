@@ -8,6 +8,7 @@
 
 namespace Praskovi04\Telegrand\Concerns;
 
+use DefStudio\Telegraph\Telegraph;
 use Praskovi04\Telegrand\DTO\Attachment;
 use Praskovi04\Telegrand\Enums\ChatActions;
 use Praskovi04\Telegrand\Enums\ChatAdminPermissions;
@@ -407,7 +408,39 @@ trait HasBotsAndChats
 
         return $telegraph;
     }
+    public function approveChatJoinRequest($chatId, $userId): Telegrand
+    {
+        $telegraph = clone $this;
 
+        $telegraph->endpoint = self::ENDPOINT_APPROVE_CHAT_JOIN_REQUEST;
+        $telegraph->data['chat_id'] = $chatId;
+        $telegraph->data['user_id'] = $userId;
+
+        return $telegraph;
+    }
+    public function videoNote($chatId, $path, $filename=null): Telegrand
+    {
+        $telegraph = clone $this;
+
+        $telegraph->endpoint = self::ENDPOINT_SEND_VIDEO_NOTE;
+        $telegraph->data['chat_id'] = $chatId;
+        if (File::exists($path)) {
+            $maxSizeMb = config('telegraph.attachments.video.max_size_mb', 50);
+
+
+            if (($size = $telegraph->fileSizeInMb($path)) > $maxSizeMb) {
+                throw \Praskovi04\Telegrand\Exceptions\FileException::documentSizeExceeded($size, $maxSizeMb);
+            }
+
+            $telegraph->files->put('video_note', new \Praskovi04\Telegrand\DTO\Attachment($path, $filename));
+        } else {
+            $telegraph->data['video_note'] = $path;
+            $telegraph->data['duration'] ??= '';
+            $telegraph->data['thumbnail'] ??= '';
+            $telegraph->data['length'] ??= '';
+        }
+        return $telegraph;
+    }
     public function banChatMember(string $userId): Telegrand
     {
         $telegraph = clone $this;
