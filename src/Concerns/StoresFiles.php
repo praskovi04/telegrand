@@ -2,11 +2,11 @@
 
 /** @noinspection PhpUnhandledExceptionInspection */
 
-namespace DefStudio\Telegraph\Concerns;
+namespace Praskovi04\Telegrand\Concerns;
 
-use DefStudio\Telegraph\Contracts\Downloadable;
-use DefStudio\Telegraph\Exceptions\FileException;
-use DefStudio\Telegraph\Telegraph;
+use Praskovi04\Telegrand\Contracts\Downloadable;
+use Praskovi04\Telegrand\Exceptions\FileException;
+use Praskovi04\Telegrand\Telegraph;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Http;

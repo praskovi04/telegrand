@@ -1,8 +1,8 @@
 <?php
 
-namespace DefStudio\Telegraph\DTO;
+namespace Praskovi04\Telegrand\DTO;
 
-use DefStudio\Telegraph\Contracts\Downloadable;
+use Praskovi04\Telegrand\Contracts\Downloadable;
 use Illuminate\Contracts\Support\Arrayable;
 
 class Photo implements Arrayable, Downloadable
@@ -63,6 +63,6 @@ class Photo implements Arrayable, Downloadable
             'width' => $this->width,
             'height' => $this->height,
             'filesize' => $this->filesize,
-        ]);
+        ], fn ($value) => $value !== null);
     }
 }

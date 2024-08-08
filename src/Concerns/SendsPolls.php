@@ -2,12 +2,12 @@
 
 /** @noinspection PhpUnhandledExceptionInspection */
 
-namespace DefStudio\Telegraph\Concerns;
+namespace Praskovi04\Telegrand\Concerns;
 
 use Carbon\CarbonInterface;
-use DefStudio\Telegraph\Exceptions\TelegraphPollException;
-use DefStudio\Telegraph\ScopedPayloads\TelegraphPollPayload;
-use DefStudio\Telegraph\ScopedPayloads\TelegraphQuizPayload;
+use Praskovi04\Telegrand\Exceptions\TelegraphPollException;
+use Praskovi04\Telegrand\ScopedPayloads\TelegraphPollPayload;
+use Praskovi04\Telegrand\ScopedPayloads\TelegraphQuizPayload;
 
 /**
  * @mixin TelegraphPollPayload

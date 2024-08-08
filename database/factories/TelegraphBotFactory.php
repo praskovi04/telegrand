@@ -1,8 +1,8 @@
 <?php
 
-namespace DefStudio\Telegraph\Database\Factories;
+namespace Praskovi04\Telegrand\Database\Factories;
 
-use DefStudio\Telegraph\Models\TelegraphBot;
+use Praskovi04\Telegrand\Models\TelegraphBot;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class TelegraphBotFactory extends Factory

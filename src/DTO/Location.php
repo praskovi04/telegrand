@@ -1,6 +1,6 @@
 <?php
 
-namespace DefStudio\Telegraph\DTO;
+namespace Praskovi04\Telegrand\DTO;
 
 use Illuminate\Contracts\Support\Arrayable;
 
@@ -53,6 +53,6 @@ class Location implements Arrayable
             'latitude' => $this->latitude,
             'longitude' => $this->longitude,
             'accuracy' => $this->accuracy,
-        ]);
+        ], fn ($value) => $value !== null);
     }
 }

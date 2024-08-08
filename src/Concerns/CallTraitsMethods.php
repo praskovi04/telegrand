@@ -1,6 +1,6 @@
 <?php
 
-namespace DefStudio\Telegraph\Concerns;
+namespace Praskovi04\Telegrand\Concerns;
 
 use ReflectionClass;
 

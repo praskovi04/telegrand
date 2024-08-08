@@ -1,6 +1,6 @@
 <?php
 
-namespace DefStudio\Telegraph\Contracts;
+namespace Praskovi04\Telegrand\Contracts;
 
 interface StorageDriver
 {

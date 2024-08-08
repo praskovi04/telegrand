@@ -1,6 +1,6 @@
 <?php
 
-use DefStudio\Telegraph\Telegraph;
+use Praskovi04\Telegrand\Telegraph;
 
 return [
     /*
@@ -15,39 +15,51 @@ return [
      */
     'default_parse_mode' => Telegraph::PARSE_HTML,
 
-    /*
-     * Sets the handler to be used when Telegraph
-     * receives a new webhook call.
-     *
-     * For reference, see https://defstudio.github.io/telegraph/webhooks/overview
-     */
-    'webhook_handler' => DefStudio\Telegraph\Handlers\EmptyWebhookHandler::class,
+    'webhook' => [
+        /*
+         * Sets the webhook URL that will be exposed by the server,
+         * this can be customized or entirely disabled (by setting it to NULL)
+         */
+        'url' => '/telegraph/{token}/webhook',
+
+        /*
+         * Sets the handler to be used when Telegraph
+         * receives a new webhook call.
+         *
+         * For reference, see https://docs.defstudio.it/telegraph/webhooks/overview
+         */
+        'handler' => Praskovi04\Telegrand\Handlers\EmptyWebhookHandler::class,
+
+        /*
+         * Middleware to be applied to the webhook route
+         */
+        'middleware' => [],
+
+        /*
+         * Sets a custom domain when registering a webhook. This will allow a local telegram bot api server
+         * to reach the webhook. Disabled by default
+         *
+         * For reference, see https://core.telegram.org/bots/api#using-a-local-bot-api-server
+         */
+        // 'domain' => 'http://my.custom.domain',
+
+        /*
+         * If enabled, unknown webhook commands are
+         * reported as exception in application logs
+         */
+        'report_unknown_commands' => true,
+
+        /*
+         * If enabled, Telegraph dumps received
+         * webhook messages to logs
+         */
+        'debug' => false,
+    ],
 
     /*
-     * Sets the webhook URL that will be exposed by the server,
-     * this can be customized or entirely disabled (by setting it to NULL)
+     * Sets HTTP request timeout when interacting with Telegram servers
      */
-    'webhook_url' => '/telegraph/{token}/webhook',
-
-    /*
-     * Sets a custom domain when registering a webhook. This will allow a local telegram bot api server
-     * to reach the webhook. Disabled by default
-     *
-     * For reference, see https://core.telegram.org/bots/api#using-a-local-bot-api-server
-     */
-    // 'custom_webhook_domain' => 'http://my.custom.domain',
-
-    /*
-     * If enabled, Telegraph dumps received
-     * webhook messages to logs
-     */
-    'debug_mode' => false,
-
-    /*
-     * If enabled, unknown webhook commands are
-     * reported as exception in application logs
-     */
-    'report_unknown_webhook_commands' => true,
+    'http_timeout' => 30,
 
     'security' => [
         /*
@@ -70,12 +82,12 @@ return [
      * Set model class for both TelegraphBot and TelegraphChat,
      * to allow more customization.
      *
-     * Bot model must be or extend `DefStudio\Telegraph\Models\TelegraphBot::class`
-     * Chat model must be or extend `DefStudio\Telegraph\Models\TelegraphChat::class`
+     * Bot model must be or extend `Praskovi04\Telegrand\Models\TelegraphBot::class`
+     * Chat model must be or extend `Praskovi04\Telegrand\Models\TelegraphChat::class`
      */
     'models' => [
-        'bot' => DefStudio\Telegraph\Models\TelegraphBot::class,
-        'chat' => DefStudio\Telegraph\Models\TelegraphChat::class,
+        'bot' => Praskovi04\Telegrand\Models\TelegraphBot::class,
+        'chat' => Praskovi04\Telegrand\Models\TelegraphChat::class,
     ],
 
     'storage' => [
@@ -88,9 +100,9 @@ return [
             'file' => [
                 /**
                  * Telegraph cache driver to be used, must implement
-                 * DefStudio\Telegraph\Contracts\StorageDriver contract
+                 * Praskovi04\Telegrand\Contracts\StorageDriver contract
                  */
-                'driver' => \DefStudio\Telegraph\Storage\FileStorageDriver::class,
+                'driver' => \Praskovi04\Telegrand\Storage\FileStorageDriver::class,
 
                 /*
                  * Laravel Storage disk to use. See /config/filesystems/disks for available disks
@@ -106,9 +118,9 @@ return [
             'cache' => [
                 /**
                  * Telegraph cache driver to be used, must implement
-                 * DefStudio\Telegraph\Contracts\StorageDriver contract
+                 * Praskovi04\Telegrand\Contracts\StorageDriver contract
                  */
-                'driver' => \DefStudio\Telegraph\Storage\CacheStorageDriver::class,
+                'driver' => \Praskovi04\Telegrand\Storage\CacheStorageDriver::class,
 
                 /*
                  * Laravel Cache store to use. See /config/cache/stores for available stores
@@ -151,6 +163,9 @@ return [
             'max_size_mb' => 50,
         ],
         'document' => [
+            'max_size_mb' => 50,
+        ],
+        'sticker' => [
             'max_size_mb' => 50,
         ],
     ],

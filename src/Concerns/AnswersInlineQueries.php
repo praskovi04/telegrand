@@ -2,11 +2,11 @@
 
 /** @noinspection PhpUnhandledExceptionInspection */
 
-namespace DefStudio\Telegraph\Concerns;
+namespace Praskovi04\Telegrand\Concerns;
 
-use DefStudio\Telegraph\DTO\InlineQueryResult;
-use DefStudio\Telegraph\Exceptions\InlineQueryException;
-use DefStudio\Telegraph\Telegraph;
+use Praskovi04\Telegrand\DTO\InlineQueryResult;
+use Praskovi04\Telegrand\Exceptions\InlineQueryException;
+use Praskovi04\Telegrand\Telegraph;
 
 /**
  * @mixin Telegraph

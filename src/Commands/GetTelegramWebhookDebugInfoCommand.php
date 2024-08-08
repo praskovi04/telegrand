@@ -1,8 +1,8 @@
 <?php
 
-namespace DefStudio\Telegraph\Commands;
+namespace Praskovi04\Telegrand\Commands;
 
-use DefStudio\Telegraph\Models\TelegraphBot;
+use Praskovi04\Telegrand\Models\TelegraphBot;
 use Illuminate\Console\Command;
 
 class GetTelegramWebhookDebugInfoCommand extends Command
@@ -10,7 +10,7 @@ class GetTelegramWebhookDebugInfoCommand extends Command
     public $signature = 'telegraph:debug-webhook
                             {bot? : the ID of the bot (if the system contain a single bot, it can be left empty)}';
 
-    public $description = 'get webhook debug infro from telegram bot';
+    public $description = 'Get webhook debug info from telegram bot';
 
     public function handle(): int
     {

@@ -1,9 +1,9 @@
 <?php
 
-namespace DefStudio\Telegraph\Commands;
+namespace Praskovi04\Telegrand\Commands;
 
-use DefStudio\Telegraph\Models\TelegraphBot;
-use DefStudio\Telegraph\Models\TelegraphChat;
+use Praskovi04\Telegrand\Models\TelegraphBot;
+use Praskovi04\Telegrand\Models\TelegraphChat;
 use Illuminate\Console\Command;
 
 class CreateNewChatCommand extends Command

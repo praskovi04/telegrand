@@ -6,7 +6,7 @@
 <a href="https://github.com/defstudio/telegraph/actions?query=workflow%3Aphpstan+branch%3Amain" target="_blank"><img style="display: inline-block; margin-top: 0.5em; margin-bottom: 0.5em" src="https://img.shields.io/github/actions/workflow/status/defstudio/telegraph/phpstan.yml?branch=main&label=phpstan&cacheSeconds=3600" alt="Static Analysis"></a>
 <a href="https://packagist.org/packages/defstudio/telegraph" target="_blank"><img style="display: inline-block; margin-top: 0.5em; margin-bottom: 0.5em" src="https://img.shields.io/packagist/dt/defstudio/telegraph.svg?style=flat&cacheSeconds=3600" alt="Total Downloads"></a>
 <a href="https://packagist.org/packages/defstudio/telegraph" target="_blank"><img style="display: inline-block; margin-top: 0.5em; margin-bottom: 0.5em" src="https://img.shields.io/packagist/l/defstudio/telegraph?style=flat&cacheSeconds=3600" alt="License"></a>
-<a href="https://twitter.com/FabioIvona?ref_src=twsrc%5Etfw"><img alt="Twitter Follow" src="https://img.shields.io/twitter/follow/FabioIvona?label=Follow&style=social"></a>
+<a href="https://twitter.com/FabioIvona?ref_src=twsrc%5Etfw" target="_blank"><img style="display: inline-block; margin-top: 0.5em; margin-bottom: 0.5em" alt="Twitter Follow" src="https://img.shields.io/twitter/follow/FabioIvona?label=Follow&style=social"></a>
 
 ---
 
@@ -49,7 +49,7 @@ php artisan vendor:publish --tag="telegraph-translations"
 
 ## Usage & Documentation
 
-After a new bot is created and added to a chat/group/channel (as described [in our documentation](https://defstudio.github.io/telegraph/quickstart/new-bot)),
+After a new bot is created and added to a chat/group/channel (as described [in our documentation](https://docs.defstudio.it/telegraph/v1/quickstart/new-bot)),
 the `Telegraph` facade can be used to easily send messages and interact with it:
 
 ```php
@@ -58,7 +58,7 @@ Telegraph::message('this is great')->send();
 
 An extensive documentation is available at
 
-https://defstudio.github.io/telegraph
+https://docs.defstudio.it/telegraph
 
 ## Testing
 
@@ -81,6 +81,7 @@ Please review [our security policy](../../security/policy) on how to report secu
 ## Credits
 
 - [Fabio Ivona](https://github.com/defstudio)
+- [def:studio team](https://github.com/defstudio)
 - [Andrea Marco Sartori](https://github.com/cerbero90) for his cool ideas
 - [Alberto Pieripolli](https://github.com/trippo) Pest badge
 - [Joris Drenth](https://github.com/jorisdrenth) Docs fix and upgrade
@@ -92,6 +93,7 @@ Please review [our security policy](../../security/policy) on how to report secu
 - [Andrey Helldar](https://github.com/andrey-helldar) Russian
 - [Joris Drenth](https://github.com/jorisdrenth) Dutch
 - [Moayed Alhagy](https://github.com/moayedalhagy) Arabic
+- [Rafael](https://github.com/rjmo) Portuguese
 
 
 ## License

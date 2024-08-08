@@ -1,6 +1,6 @@
 <?php
 
-namespace DefStudio\Telegraph\Lang;
+namespace Praskovi04\Telegrand\Lang;
 
 return [
 

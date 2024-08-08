@@ -4,10 +4,10 @@
 
 /** @noinspection PhpDocSignatureIsNotCompleteInspection */
 
-namespace DefStudio\Telegraph\DTO;
+namespace Praskovi04\Telegrand\DTO;
 
 use Carbon\CarbonInterface;
-use DefStudio\Telegraph\Keyboard\Keyboard;
+use Praskovi04\Telegrand\Keyboard\Keyboard;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
@@ -45,6 +45,9 @@ class Message implements Arrayable
     private ?Location $location = null;
     private ?Contact $contact = null;
     private ?Voice $voice = null;
+    private ?Sticker $sticker = null;
+
+    private ?WriteAccessAllowed $writeAccessAllowed = null;
 
     private function __construct()
     {
@@ -67,6 +70,7 @@ class Message implements Arrayable
      *     animation?:array<string, mixed>,
      *     audio?:array<string, mixed>,
      *     voice?:array<string, mixed>,
+     *     sticker?:array<string, mixed>,
      *     document?: array<string, mixed>,
      *     video?: array<string, mixed>,
      *     photo?: array<string, mixed>,
@@ -75,6 +79,7 @@ class Message implements Arrayable
      *     new_chat_members?: array<string, mixed>,
      *     left_chat_member?: array<string, mixed>,
      *     web_app_data?: array<string, mixed>,
+     *     write_access_allowed?: array<string, mixed>,
      *  } $data
      */
     public static function fromArray(array $data): Message
@@ -159,6 +164,11 @@ class Message implements Arrayable
             $message->voice = Voice::fromArray($data['voice']);
         }
 
+        if (isset($data['sticker'])) {
+            /* @phpstan-ignore-next-line */
+            $message->sticker = Sticker::fromArray($data['sticker']);
+        }
+
         /* @phpstan-ignore-next-line */
         $message->newChatMembers = collect($data['new_chat_members'] ?? [])->map(fn (array $userData) => User::fromArray($userData));
 
@@ -176,6 +186,11 @@ class Message implements Arrayable
             }
 
             $message->webAppData = $webAppData;
+        }
+
+        if (isset($data['write_access_allowed'])) {
+            /* @phpstan-ignore-next-line */
+            $message->writeAccessAllowed = WriteAccessAllowed::fromArray($data['write_access_allowed']);
         }
 
         return $message;
@@ -274,6 +289,11 @@ class Message implements Arrayable
         return $this->voice;
     }
 
+    public function sticker(): ?Sticker
+    {
+        return $this->sticker;
+    }
+
     /**
      * @return Collection<array-key, User>
      */
@@ -290,6 +310,11 @@ class Message implements Arrayable
     public function webAppData(): mixed
     {
         return $this->webAppData;
+    }
+
+    public function writeAccessAllowed(): ?WriteAccessAllowed
+    {
+        return $this->writeAccessAllowed;
     }
 
     public function toArray(): array
@@ -313,9 +338,11 @@ class Message implements Arrayable
             'location' => $this->location?->toArray(),
             'contact' => $this->contact?->toArray(),
             'voice' => $this->voice?->toArray(),
+            'sticker' => $this->sticker?->toArray(),
             'new_chat_members' => $this->newChatMembers->toArray(),
             'left_chat_member' => $this->leftChatMember,
             'web_app_data' => $this->webAppData,
-        ]);
+            'write_access_allowed' => $this->writeAccessAllowed?->toArray(),
+        ], fn ($value) => $value !== null);
     }
 }

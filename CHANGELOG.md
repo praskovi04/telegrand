@@ -2,6 +2,283 @@
 
 All notable changes to `telegraph` will be documented in this file.
 
+## v1.49.4 - 2024-07-19
+
+### What's Changed
+
+* Fix UserDTO by @ah-rahimi in https://github.com/defstudio/telegraph/pull/608
+
+**Full Changelog**: https://github.com/defstudio/telegraph/compare/v1.49.3...v1.49.4
+
+## v1.49.3 - 2024-07-16
+
+**Full Changelog**: https://github.com/defstudio/telegraph/compare/v1.49.2...v1.49.3
+
+## v1.49.2 - 2024-07-16
+
+**Full Changelog**: https://github.com/defstudio/telegraph/compare/v1.49.1...v1.49.2
+
+## v1.49.1 - 2024-07-16
+
+**Full Changelog**: https://github.com/defstudio/telegraph/compare/v1.49.0...v1.49.1
+
+## v1.49.0 - 2024-07-15
+
+### What's Changed
+
+* [feat] write access allowed field by @ah-rahimi in https://github.com/defstudio/telegraph/pull/605
+
+**Full Changelog**: https://github.com/defstudio/telegraph/compare/v1.48.1...v1.49.0
+
+## v1.48.1 - 2024-07-06
+
+### What's Changed
+
+* #602 implemented Sticker DTO by @MarioGattolla in https://github.com/defstudio/telegraph/pull/603
+* Implements sendSticker method by @ivankuraev in https://github.com/defstudio/telegraph/pull/598
+
+### New Contributors
+
+* @ivankuraev made their first contribution in https://github.com/defstudio/telegraph/pull/598
+
+**Full Changelog**: https://github.com/defstudio/telegraph/compare/v1.48.0...v1.48.1
+
+## v1.48.0 - 2024-06-28
+
+### What's Changed
+
+* #386-implemented-thread-method by @MarioGattolla in https://github.com/defstudio/telegraph/pull/600
+
+**Full Changelog**: https://github.com/defstudio/telegraph/compare/v1.47.0...v1.48.0
+
+## v1.47.0 - 2024-06-26
+
+### What's Changed
+
+* #498 implement sendMediaGroup method by @MarioGattolla in https://github.com/defstudio/telegraph/pull/599
+
+**Full Changelog**: https://github.com/defstudio/telegraph/compare/v1.46.6...v1.47.0
+
+## v1.46.6 - 2024-06-07
+
+**Full Changelog**: https://github.com/defstudio/telegraph/compare/v1.46.5...v1.46.6
+
+## v1.46.5 - 2024-06-07
+
+**Full Changelog**: https://github.com/defstudio/telegraph/compare/v1.46.4...v1.46.5
+
+## v1.46.4 - 2024-06-07
+
+**Full Changelog**: https://github.com/defstudio/telegraph/compare/v1.46.3...v1.46.4
+
+## v1.46.3 - 2024-06-07
+
+**Full Changelog**: https://github.com/defstudio/telegraph/compare/v1.46.2...v1.46.3
+
+## v1.46.2 - 2024-06-07
+
+**Full Changelog**: https://github.com/defstudio/telegraph/compare/v1.45.2...v1.46.2
+
+## v1.45.2 - 2024-06-07
+
+**Full Changelog**: https://github.com/defstudio/telegraph/compare/v1.45.1...v1.45.2
+
+## v1.45.1 - 2024-05-31
+
+**Full Changelog**: https://github.com/defstudio/telegraph/compare/v1.45.0...v1.45.1
+
+## v1.45.0 - 2024-05-31
+
+### What's Changed
+
+* #586 fix documentation error by @MarioGattolla in https://github.com/defstudio/telegraph/pull/596
+* #591 implemented HTTP request timeout config value by @MarioGattolla in https://github.com/defstudio/telegraph/pull/595
+* feat: replace when functions with Laravel Conditionable by @ah-rahimi in https://github.com/defstudio/telegraph/pull/594
+* feat: add isPremium to DTO User by @ah-rahimi in https://github.com/defstudio/telegraph/pull/593
+* [fix] message not set up before retrieving Chat by @tobya in https://github.com/defstudio/telegraph/pull/584
+
+### New Contributors
+
+* @tobya made their first contribution in https://github.com/defstudio/telegraph/pull/584
+
+**Full Changelog**: https://github.com/defstudio/telegraph/compare/v1.44.4...v1.45.0
+
+## v1.44.4 - 2024-04-26
+
+**Full Changelog**: https://github.com/defstudio/telegraph/compare/v1.44.3...v1.44.4
+
+## v1.44.3 - 2024-04-26
+
+**Full Changelog**: https://github.com/defstudio/telegraph/compare/v1.44.2...v1.44.3
+
+## v1.44.2 - 2024-04-26
+
+**Full Changelog**: https://github.com/defstudio/telegraph/compare/v1.44.1...v1.44.2
+
+## v1.44.1 - 2024-04-26
+
+**Full Changelog**: https://github.com/defstudio/telegraph/compare/v1.44.0...v1.44.1
+
+## v1.44.0 - 2024-04-19
+
+**Full Changelog**: https://github.com/defstudio/telegraph/compare/v1.43.10...v1.44.0
+
+## v1.43.10 - 2024-04-18
+
+**Full Changelog**: https://github.com/defstudio/telegraph/compare/v1.43.9...v1.43.10
+
+## v1.43.9 - 2024-04-18
+
+**Full Changelog**: https://github.com/defstudio/telegraph/compare/v1.43.8...v1.43.9
+
+## v1.43.8 - 2024-04-17
+
+**Full Changelog**: https://github.com/defstudio/telegraph/compare/v1.43.7...v1.43.8
+
+## v1.43.7 - 2024-04-17
+
+**Full Changelog**: https://github.com/defstudio/telegraph/compare/v1.43.6...v1.43.7
+
+## v1.43.6 - 2024-04-17
+
+**Full Changelog**: https://github.com/defstudio/telegraph/compare/v1.43.5...v1.43.6
+
+## v1.43.5 - 2024-04-16
+
+**Full Changelog**: https://github.com/defstudio/telegraph/compare/v1.43.4...v1.43.5
+
+## v1.43.4 - 2024-04-16
+
+**Full Changelog**: https://github.com/defstudio/telegraph/compare/v1.43.3...v1.43.4
+
+## v1.43.3 - 2024-04-15
+
+### What's Changed
+
+* New docs by @fabio-ivona in https://github.com/defstudio/telegraph/pull/574
+
+**Full Changelog**: https://github.com/defstudio/telegraph/compare/v1.43.2...v1.43.3
+
+## v1.43.2 - 2024-04-12
+
+**Full Changelog**: https://github.com/defstudio/telegraph/compare/v1.43.1...v1.43.2
+
+## v1.43.1 - 2024-04-11
+
+### What's Changed
+
+* teletraph chat retrieve optimization by @fabio-ivona in https://github.com/defstudio/telegraph/pull/571
+
+**Full Changelog**: https://github.com/defstudio/telegraph/compare/v1.43.0...v1.43.1
+
+## v1.42.1 - 2024-04-11
+
+### What's Changed
+
+* Add "down" for rollback in "create_telegraph_bots_table" by @Alice088 in https://github.com/defstudio/telegraph/pull/557
+* Add "down" for rollback in "create_telegraph_chats_table" by @Alice088 in https://github.com/defstudio/telegraph/pull/556
+* added portuguese language by @rjmo in https://github.com/defstudio/telegraph/pull/564
+* Bump vite and nuxt in /docs by @dependabot in https://github.com/defstudio/telegraph/pull/565
+* Fix #568 by @fabio-ivona in https://github.com/defstudio/telegraph/pull/569
+* Fix breaking change in minor release by @fabio-ivona in https://github.com/defstudio/telegraph/pull/570
+
+### New Contributors
+
+* @Alice088 made their first contribution in https://github.com/defstudio/telegraph/pull/557
+* @rjmo made their first contribution in https://github.com/defstudio/telegraph/pull/564
+
+**Full Changelog**: https://github.com/defstudio/telegraph/compare/v1.42.0...v1.43.0
+
+## v1.42.0 - 2024-03-14
+
+### What's Changed
+
+* [chore] Laravel 11 support by @fabio-ivona in https://github.com/defstudio/telegraph/pull/520
+* Fix missing switch_inline_query fields in Keyboard::fromArray() method (ISSUE-533) by @varemel in https://github.com/defstudio/telegraph/pull/541
+* add 'delete messages' method by @pou in https://github.com/defstudio/telegraph/pull/511
+* Wehbook middleware by @fabio-ivona in https://github.com/defstudio/telegraph/pull/544
+* #549 add properties assignments in KeyboardButtonProxy and ReplyKeyboardButtonProxy constructors by @oakymax in https://github.com/defstudio/telegraph/pull/550
+
+### New Contributors
+
+* @oakymax made their first contribution in https://github.com/defstudio/telegraph/pull/550
+
+**Full Changelog**: https://github.com/defstudio/telegraph/compare/v1.41.2...v1.42.0
+
+## v1.41.2 - 2024-02-15
+
+### What's Changed
+
+* [Fix] breaking change on minor version by @fabio-ivona in https://github.com/defstudio/telegraph/pull/521
+
+**Full Changelog**: https://github.com/defstudio/telegraph/compare/v1.41.1...v1.41.2
+
+## v1.41.1 - 2024-02-14
+
+### What's Changed
+
+* Added Ukrainian translations by @RivGames in https://github.com/defstudio/telegraph/pull/513
+* fix #518 long polling not working by @fabio-ivona in https://github.com/defstudio/telegraph/pull/519
+
+### New Contributors
+
+* @RivGames made their first contribution in https://github.com/defstudio/telegraph/pull/513
+
+**Full Changelog**: https://github.com/defstudio/telegraph/compare/v1.41.0...v1.41.1
+
+## v1.41.0 - 2024-02-01
+
+### What's Changed
+
+* [fix] add missing parse_mode in inline queries results by @fabio-ivona in https://github.com/defstudio/telegraph/pull/501
+* [fix] DTO lose false values by @fabio-ivona in https://github.com/defstudio/telegraph/pull/502
+* [feat] botUpdates timeout, offset and limit by @fabio-ivona in https://github.com/defstudio/telegraph/pull/503
+
+**Full Changelog**: https://github.com/defstudio/telegraph/compare/v1.40.2...v1.41.0
+
+## v1.40.2 - 2024-02-01
+
+### What's Changed
+
+* docs fixes by @siarheipashkevich in https://github.com/defstudio/telegraph/pull/495
+* docs deploy fix by @fabio-ivona
+
+**Full Changelog**: https://github.com/defstudio/telegraph/compare/v1.40.1...v1.40.2
+
+## v1.40.1 - 2024-01-26
+
+### What's Changed
+
+* documentation review by @siarheipashkevich in https://github.com/defstudio/telegraph/pull/494
+
+**Full Changelog**: https://github.com/defstudio/telegraph/compare/v1.40.0...v1.40.1
+
+## v1.40.0 - 2024-01-26
+
+### What's Changed
+
+* Update 3.keyboards.md by @siarheipashkevich in https://github.com/defstudio/telegraph/pull/478
+* [feat] allows to change a bot's default menu button by @fabio-ivona in https://github.com/defstudio/telegraph/pull/484
+* [docs] documentation improvements by @fabio-ivona in https://github.com/defstudio/telegraph/pull/486
+* [fix] webhook exceptions handling
+
+### New Contributors
+
+* @siarheipashkevich made their first contribution in https://github.com/defstudio/telegraph/pull/478
+
+**Full Changelog**: https://github.com/defstudio/telegraph/compare/v1.39.0...v1.40.0
+
+## v1.39.0 - 2024-01-22
+
+### What's Changed
+
+* [chore] Automatic dependencies resolution for callback action method by @fabio-ivona in https://github.com/defstudio/telegraph/pull/475
+* [feat] Custom Attachment Limits by @fabio-ivona in https://github.com/defstudio/telegraph/pull/476
+* [feat] memberInfo() method + docs by @MarioGattolla in https://github.com/defstudio/telegraph/pull/424
+* [feat] custom webhooks url by @fabio-ivona in https://github.com/defstudio/telegraph/pull/477
+
+**Full Changelog**: https://github.com/defstudio/telegraph/compare/v1.38.7...v1.39.0
+
 ## v1.38.7 - 2024-01-08
 
 **Full Changelog**: https://github.com/defstudio/telegraph/compare/v1.38.6...v1.38.7

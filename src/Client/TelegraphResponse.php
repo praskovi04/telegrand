@@ -1,6 +1,6 @@
 <?php
 
-namespace DefStudio\Telegraph\Client;
+namespace Praskovi04\Telegrand\Client;
 
 use Illuminate\Http\Client\Response;
 

@@ -1,11 +1,13 @@
 <?php
 
-use DefStudio\Telegraph\Controllers\WebhookController;
+use Praskovi04\Telegrand\Controllers\WebhookController;
 use Illuminate\Support\Facades\Route;
 
-if($webhookUrl = config('telegraph.webhook_url', '/telegraph/{token}/webhook')){
+if ($webhookUrl = config('telegraph.webhook_url', config('telegraph.webhook.url', '/telegraph/{token}/webhook'))) {
 
-    Route::post($webhookUrl, [WebhookController::class, 'handle'])->name('telegraph.webhook');
+    Route::post($webhookUrl, [WebhookController::class, 'handle'])
+        ->middleware(config('telegraph.webhook.middleware', []))
+        ->name('telegraph.webhook');
 
 }
 

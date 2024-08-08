@@ -1,8 +1,8 @@
 <?php
 
-namespace DefStudio\Telegraph\DTO;
+namespace Praskovi04\Telegrand\DTO;
 
-use DefStudio\Telegraph\Keyboard\Keyboard;
+use Praskovi04\Telegrand\Keyboard\Keyboard;
 
 abstract class InlineQueryResult
 {
@@ -33,7 +33,7 @@ abstract class InlineQueryResult
      */
     public function toArray(): array
     {
-        $data = array_filter($this->data()) + [
+        $data = array_filter($this->data(), fn ($value) => $value !== null) + [
           'id' => $this->id,
           'type' => $this->type,
         ];

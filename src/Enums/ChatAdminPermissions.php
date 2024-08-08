@@ -1,6 +1,6 @@
 <?php
 
-namespace DefStudio\Telegraph\Enums;
+namespace Praskovi04\Telegrand\Enums;
 
 final class ChatAdminPermissions
 {

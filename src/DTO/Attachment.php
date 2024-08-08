@@ -1,6 +1,6 @@
 <?php
 
-namespace DefStudio\Telegraph\DTO;
+namespace Praskovi04\Telegrand\DTO;
 
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Support\Facades\File;

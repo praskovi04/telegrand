@@ -2,16 +2,16 @@
     "name": "praskovi04/telegrand",
     "description": "A laravel facade to interact with Telegram Bots",
     "keywords": [
-        "defstudio",
+        "praskovi04",
         "laravel",
-        "telegraph"
+        "telegrand"
     ],
     "homepage": "https://github.com/praskovi04/telegrand",
     "license": "MIT",
     "authors": [
         {
-            "name": "Fabio Ivona",
-            "email": "fabio.ivona@defstudio.it",
+            "name": "Your Name",
+            "email": "your.email@example.com",
             "role": "Developer"
         }
     ],
@@ -44,13 +44,13 @@
     },
     "autoload": {
         "psr-4": {
-            "DefStudio\\Telegraph\\": "src",
-            "DefStudio\\Telegraph\\Database\\Factories\\": "database/factories"
+            "Praskovi04\\Telegrand\\": "src",
+            "Praskovi04\\Telegrand\\Database\\Factories\\": "database/factories"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "DefStudio\\Telegraph\\Tests\\": "tests"
+            "Praskovi04\\Telegrand\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -80,10 +80,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "DefStudio\\Telegraph\\TelegraphServiceProvider"
+                "Praskovi04\\Telegrand\\TelegrandServiceProvider"
             ],
             "aliases": {
-                "Telegraph": "DefStudio\\Telegraph\\Facades\\Telegraph"
+                "Telegrand": "Praskovi04\\Telegrand\\Facades\\Telegrand"
             }
         }
     },

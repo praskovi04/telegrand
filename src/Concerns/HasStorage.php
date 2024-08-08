@@ -2,10 +2,10 @@
 
 /** @noinspection PhpUnhandledExceptionInspection */
 
-namespace DefStudio\Telegraph\Concerns;
+namespace Praskovi04\Telegrand\Concerns;
 
-use DefStudio\Telegraph\Contracts\StorageDriver;
-use DefStudio\Telegraph\Exceptions\StorageException;
+use Praskovi04\Telegrand\Contracts\StorageDriver;
+use Praskovi04\Telegrand\Exceptions\StorageException;
 
 trait HasStorage
 {

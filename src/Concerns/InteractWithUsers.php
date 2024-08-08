@@ -3,9 +3,9 @@
 
 /** @noinspection PhpUnhandledExceptionInspection */
 
-namespace DefStudio\Telegraph\Concerns;
+namespace Praskovi04\Telegrand\Concerns;
 
-use DefStudio\Telegraph\Telegraph;
+use Praskovi04\Telegrand\Telegraph;
 
 /**
  * @mixin Telegraph

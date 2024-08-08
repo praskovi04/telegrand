@@ -2,11 +2,11 @@
 
 /** @noinspection PhpUnhandledExceptionInspection */
 
-namespace DefStudio\Telegraph\Concerns;
+namespace Praskovi04\Telegrand\Concerns;
 
-use DefStudio\Telegraph\DTO\Attachment;
-use DefStudio\Telegraph\Jobs\SendRequestToTelegramJob;
-use DefStudio\Telegraph\Telegraph;
+use Praskovi04\Telegrand\DTO\Attachment;
+use Praskovi04\Telegrand\Jobs\SendRequestToTelegramJob;
+use Praskovi04\Telegrand\Telegraph;
 use Illuminate\Foundation\Bus\PendingDispatch;
 use Illuminate\Http\Client\PendingRequest;
 use Illuminate\Http\Client\Response;
@@ -41,7 +41,7 @@ trait InteractsWithTelegram
         );
 
         /** @phpstan-ignore-next-line  */
-        return $request->post($this->getApiUrl(), $this->prepareData());
+        return $request->timeout(config('telegraph.http_timeout', 30))->post($this->getApiUrl(), $this->prepareData());
     }
 
     /**

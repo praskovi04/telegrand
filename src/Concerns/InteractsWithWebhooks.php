@@ -2,10 +2,10 @@
 
 /** @noinspection PhpUnhandledExceptionInspection */
 
-namespace DefStudio\Telegraph\Concerns;
+namespace Praskovi04\Telegrand\Concerns;
 
-use DefStudio\Telegraph\Exceptions\TelegramWebhookException;
-use DefStudio\Telegraph\Telegraph;
+use Praskovi04\Telegrand\Exceptions\TelegramWebhookException;
+use Praskovi04\Telegrand\Telegraph;
 
 /**
  * @mixin Telegraph
@@ -14,7 +14,7 @@ trait InteractsWithWebhooks
 {
     private function getWebhookUrl(): string
     {
-        $customWebhookUrl = config('telegraph.custom_webhook_domain');
+        $customWebhookUrl = config('telegraph.custom_webhook_domain', config('telegraph.webhook.domain'));
 
         if ($customWebhookUrl === null) {
             $url = route('telegraph.webhook', $this->getBot());

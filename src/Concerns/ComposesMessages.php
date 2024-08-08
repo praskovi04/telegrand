@@ -2,10 +2,10 @@
 
 /** @noinspection PhpUnhandledExceptionInspection */
 
-namespace DefStudio\Telegraph\Concerns;
+namespace Praskovi04\Telegrand\Concerns;
 
-use DefStudio\Telegraph\Models\TelegraphChat;
-use DefStudio\Telegraph\Telegraph;
+use Praskovi04\Telegrand\Models\TelegraphChat;
+use Praskovi04\Telegrand\Telegraph;
 
 trait ComposesMessages
 {
@@ -36,7 +36,7 @@ trait ComposesMessages
             $telegraph->setMessageText($message);
         }
 
-        $telegraph->data['parse_mode'] = 'html';
+        $telegraph->data['parse_mode'] = Telegraph::PARSE_HTML;
 
         return $telegraph;
     }
@@ -49,7 +49,7 @@ trait ComposesMessages
             $telegraph->setMessageText($message);
         }
 
-        $telegraph->data['parse_mode'] = 'markdown';
+        $telegraph->data['parse_mode'] = Telegraph::PARSE_MARKDOWN;
 
         return $telegraph;
     }
@@ -62,7 +62,7 @@ trait ComposesMessages
             $telegraph->setMessageText($message);
         }
 
-        $telegraph->data['parse_mode'] = 'MarkdownV2';
+        $telegraph->data['parse_mode'] = Telegraph::PARSE_MARKDOWNV2;
 
         return $telegraph;
     }
@@ -121,6 +121,22 @@ trait ComposesMessages
         $telegraph->data = [
             'chat_id' => $telegraph->getChatId(),
             'message_id' => $messageId,
+        ];
+
+        return $telegraph;
+    }
+
+    /**
+     * @param array<int> $messageIds
+     */
+    public function deleteMessages(array $messageIds): Telegraph
+    {
+        $telegraph = clone $this;
+
+        $telegraph->endpoint = self::ENDPOINT_DELETE_MESSAGES;
+        $telegraph->data = [
+            'chat_id' => $telegraph->getChatId(),
+            'message_ids' => $messageIds,
         ];
 
         return $telegraph;

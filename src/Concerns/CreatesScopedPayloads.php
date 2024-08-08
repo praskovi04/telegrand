@@ -1,9 +1,9 @@
 <?php
 
-namespace DefStudio\Telegraph\Concerns;
+namespace Praskovi04\Telegrand\Concerns;
 
-use DefStudio\Telegraph\ScopedPayloads\TelegraphPollPayload;
-use DefStudio\Telegraph\ScopedPayloads\TelegraphQuizPayload;
+use Praskovi04\Telegrand\ScopedPayloads\TelegraphPollPayload;
+use Praskovi04\Telegrand\ScopedPayloads\TelegraphQuizPayload;
 
 trait CreatesScopedPayloads
 {

@@ -2,10 +2,10 @@
 
 /** @noinspection PhpUnhandledExceptionInspection */
 
-namespace DefStudio\Telegraph\Controllers;
+namespace Praskovi04\Telegrand\Controllers;
 
-use DefStudio\Telegraph\Handlers\WebhookHandler;
-use DefStudio\Telegraph\Models\TelegraphBot;
+use Praskovi04\Telegrand\Handlers\WebhookHandler;
+use Praskovi04\Telegrand\Models\TelegraphBot;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -20,7 +20,7 @@ class WebhookController
         $bot = $botModel::fromToken($token);
 
         /** @var class-string $handler */
-        $handler = config('telegraph.webhook_handler');
+        $handler = config('telegraph.webhook_handler', config('telegraph.webhook.handler'));
 
         /** @var WebhookHandler $handler */
         $handler = app($handler);

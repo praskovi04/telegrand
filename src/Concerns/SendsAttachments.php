@@ -1,15 +1,17 @@
 <?php
 
+/** @noinspection DuplicatedCode */
+
 /** @noinspection PhpUnnecessaryLocalVariableInspection */
 
 /** @noinspection PhpUnhandledExceptionInspection */
 
-namespace DefStudio\Telegraph\Concerns;
+namespace Praskovi04\Telegrand\Concerns;
 
-use DefStudio\Telegraph\DTO\Attachment;
-use DefStudio\Telegraph\Exceptions\FileException;
-use DefStudio\Telegraph\ScopedPayloads\TelegraphEditMediaPayload;
-use DefStudio\Telegraph\Telegraph;
+use Praskovi04\Telegrand\DTO\Attachment;
+use Praskovi04\Telegrand\Exceptions\FileException;
+use Praskovi04\Telegrand\ScopedPayloads\TelegraphEditMediaPayload;
+use Praskovi04\Telegrand\Telegraph;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 
@@ -179,9 +181,8 @@ trait SendsAttachments
         $telegraph = clone $this;
 
         if (File::exists($path)) {
-            $maxSizeKb = config('telegraph.attachments.thumbnail.max_size_kb', 200);
-
-            assert(is_float($maxSizeKb));
+            /* @phpstan-ignore-next-line */
+            $maxSizeKb = floatval(config('telegraph.attachments.thumbnail.max_size_kb', 200));
 
             if (($size = $telegraph->fileSizeInKb($path)) > $maxSizeKb) {
                 throw FileException::thumbnailSizeExceeded($size, $maxSizeKb);
@@ -231,6 +232,22 @@ trait SendsAttachments
         $telegraph->data['chat_id'] = $telegraph->getChatId();
 
         $this->attachPhoto($telegraph, $path, $filename);
+
+        return $telegraph;
+    }
+
+    /**
+     * @param array<int|string, array<mixed>> $mediaInputs
+     */
+    public function mediaGroup(array $mediaInputs): self
+    {
+        $telegraph = clone $this;
+
+        $telegraph->endpoint = self::ENDPOINT_SEND_MEDIA_GROUP;
+
+        $telegraph->data['chat_id'] = $telegraph->getChatId();
+
+        $telegraph->data['media'] = $mediaInputs;
 
         return $telegraph;
     }
@@ -288,11 +305,23 @@ trait SendsAttachments
         return $telegraph;
     }
 
+    public function sticker(string $path, string $filename = null): self
+    {
+        $telegraph = clone $this;
+
+        $telegraph->endpoint = self::ENDPOINT_SEND_STICKER;
+        $telegraph->data['chat_id'] = $telegraph->getChatId();
+
+        $this->attachSticker($telegraph, $path, $filename);
+
+        return $telegraph;
+    }
+
     protected function attachPhoto(self $telegraph, string $path, ?string $filename): void
     {
         if (File::exists($path)) {
-
-            $maxSizeInMb = config('telegraph.attachments.photo.max_size_mb', 10);
+            /* @phpstan-ignore-next-line  */
+            $maxSizeInMb = floatval(config('telegraph.attachments.photo.max_size_mb', 10));
 
             if (($size = $telegraph->fileSizeInMb($path)) > $maxSizeInMb) {
                 throw FileException::photoSizeExceeded($size, $maxSizeInMb);
@@ -309,8 +338,8 @@ trait SendsAttachments
                 throw FileException::invalidPhotoSize($totalLength, $heightWidthSumPx);
             }
 
-            $maxRatio = config('telegraph.attachments.photo.max_ratio', 20);
-
+            /* @phpstan-ignore-next-line  */
+            $maxRatio = floatval(config('telegraph.attachments.photo.max_ratio', 20));
 
             if (($ratio = $height / $width) > $maxRatio || $ratio < (1 / $maxRatio)) {
                 throw FileException::invalidPhotoRatio($ratio, $maxRatio);
@@ -326,9 +355,8 @@ trait SendsAttachments
     protected function attachAnimation(self $telegraph, string $path, ?string $filename): void
     {
         if (File::exists($path)) {
-            $maxSizeMb = config('telegraph.attachments.animation.max_size_mb', 50);
-
-            assert(is_float($maxSizeMb));
+            /* @phpstan-ignore-next-line  */
+            $maxSizeMb = floatval(config('telegraph.attachments.animation.max_size_mb', 50));
 
             if (($size = $telegraph->fileSizeInMb($path)) > $maxSizeMb) {
                 throw FileException::documentSizeExceeded($size, $maxSizeMb);
@@ -347,9 +375,8 @@ trait SendsAttachments
     protected function attachVideo(self $telegraph, string $path, ?string $filename): void
     {
         if (File::exists($path)) {
-            $maxSizeMb = config('telegraph.attachments.video.max_size_mb', 50);
-
-            assert(is_float($maxSizeMb));
+            /* @phpstan-ignore-next-line  */
+            $maxSizeMb = floatval(config('telegraph.attachments.video.max_size_mb', 50));
 
             if (($size = $telegraph->fileSizeInMb($path)) > $maxSizeMb) {
                 throw FileException::documentSizeExceeded($size, $maxSizeMb);
@@ -375,10 +402,8 @@ trait SendsAttachments
     protected function attachAudio(self $telegraph, string $path, ?string $filename): void
     {
         if (File::exists($path)) {
-
-            $maxSizeMb = config('telegraph.attachments.audio.max_size_mb', 50);
-
-            assert(is_float($maxSizeMb));
+            /* @phpstan-ignore-next-line */
+            $maxSizeMb = floatval(config('telegraph.attachments.audio.max_size_mb', 50));
 
             if (($size = $telegraph->fileSizeInMb($path)) > $maxSizeMb) {
                 throw FileException::documentSizeExceeded($size, $maxSizeMb);
@@ -401,10 +426,8 @@ trait SendsAttachments
     protected function attachDocument(self $telegraph, string $path, ?string $filename): void
     {
         if (File::exists($path)) {
-
-            $maxSizeMb = config('telegraph.attachments.document.max_size_mb', 50);
-
-            assert(is_float($maxSizeMb));
+            /* @phpstan-ignore-next-line */
+            $maxSizeMb = floatval(config('telegraph.attachments.document.max_size_mb', 50));
 
             if (($size = $telegraph->fileSizeInMb($path)) > $maxSizeMb) {
                 throw FileException::documentSizeExceeded($size, $maxSizeMb);
@@ -414,6 +437,23 @@ trait SendsAttachments
         } else {
             $telegraph->data['document'] = $path;
             $telegraph->data['caption'] ??= '';
+        }
+    }
+
+    protected function attachSticker(self $telegraph, string $path, ?string $filename): void
+    {
+        if (File::exists($path)) {
+            /* @phpstan-ignore-next-line  */
+            $maxSizeMb = floatval(config('telegraph.attachments.sticker.max_size_mb', 50));
+
+            if (($size = $telegraph->fileSizeInMb($path)) > $maxSizeMb) {
+                throw FileException::documentSizeExceeded($size, $maxSizeMb);
+            }
+
+            $telegraph->files->put('sticker', new Attachment($path, $filename));
+        } else {
+            $telegraph->data['sticker'] = $path;
+            $telegraph->data['emoji'] ??= '';
         }
     }
 }

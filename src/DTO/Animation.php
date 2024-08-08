@@ -1,8 +1,8 @@
 <?php
 
-namespace DefStudio\Telegraph\DTO;
+namespace Praskovi04\Telegrand\DTO;
 
-use DefStudio\Telegraph\Contracts\Downloadable;
+use Praskovi04\Telegrand\Contracts\Downloadable;
 use Illuminate\Contracts\Support\Arrayable;
 
 class Animation implements Arrayable, Downloadable
@@ -102,6 +102,6 @@ class Animation implements Arrayable, Downloadable
             'mime_type' => $this->mimeType,
             'filesize' => $this->filesize,
             'thumbnail' => $this->thumbnail?->toArray(),
-        ]);
+        ], fn ($value) => $value !== null);
     }
 }

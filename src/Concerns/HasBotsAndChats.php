@@ -6,18 +6,18 @@
 
 /** @noinspection PhpUnhandledExceptionInspection */
 
-namespace DefStudio\Telegraph\Concerns;
+namespace Praskovi04\Telegrand\Concerns;
 
-use DefStudio\Telegraph\DTO\Attachment;
-use DefStudio\Telegraph\Enums\ChatActions;
-use DefStudio\Telegraph\Enums\ChatAdminPermissions;
-use DefStudio\Telegraph\Exceptions\ChatSettingsException;
-use DefStudio\Telegraph\Exceptions\FileException;
-use DefStudio\Telegraph\Exceptions\TelegraphException;
-use DefStudio\Telegraph\Models\TelegraphBot;
-use DefStudio\Telegraph\Models\TelegraphChat;
-use DefStudio\Telegraph\ScopedPayloads\SetChatMenuButtonPayload;
-use DefStudio\Telegraph\Telegraph;
+use Praskovi04\Telegrand\DTO\Attachment;
+use Praskovi04\Telegrand\Enums\ChatActions;
+use Praskovi04\Telegrand\Enums\ChatAdminPermissions;
+use Praskovi04\Telegrand\Exceptions\ChatSettingsException;
+use Praskovi04\Telegrand\Exceptions\FileException;
+use Praskovi04\Telegrand\Exceptions\TelegraphException;
+use Praskovi04\Telegrand\Models\TelegraphBot;
+use Praskovi04\Telegrand\Models\TelegraphChat;
+use Praskovi04\Telegrand\ScopedPayloads\SetChatMenuButtonPayload;
+use Praskovi04\Telegrand\Telegraph;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\File;
 
@@ -35,10 +35,6 @@ trait HasBotsAndChats
         $telegraph = clone $this;
 
         $telegraph->bot = $bot;
-
-        if (empty($telegraph->chat) && $bot instanceof TelegraphBot) {
-            $telegraph->chat = rescue(fn () => $telegraph->bot->chats->sole(), report: false); //@phpstan-ignore-line
-        }
 
         return $telegraph;
     }
@@ -94,21 +90,15 @@ trait HasBotsAndChats
             $bot = $telegraph->getBotIfAvailable();
 
             if ($bot instanceof TelegraphBot) {
-                /** @var TelegraphChat|string $chat */
-                $chat = rescue(fn () => $bot->chats()->sole(), config('telegraph.chat_id'), false);
-
-                $telegraph->chat = $chat;
+                $telegraph->chat = rescue(fn () => $bot->chats()->sole(), report: false);
             }
         }
 
         if (empty($telegraph->chat)) {
-            /** @var TelegraphChat $chat */
-            $chat = rescue(fn () => TelegraphChat::query()->sole(), null, false);
-
-            $telegraph->chat = $chat;
+            $telegraph->chat = rescue(fn () => TelegraphChat::query()->sole(), report: false);
         }
 
-        return $telegraph->chat;
+        return $telegraph->chat ?? null;
     }
 
     protected function getChat(): TelegraphChat|string
@@ -146,11 +136,30 @@ trait HasBotsAndChats
         return $telegraph;
     }
 
-    public function botUpdates(): Telegraph
+    /**
+     * @param string[]|null $allowedUpdates
+     */
+    public function botUpdates(int $timeout = null, int $offset = null, int $limit = null, array $allowedUpdates = null): Telegraph
     {
         $telegraph = clone $this;
 
         $telegraph->endpoint = self::ENDPOINT_GET_BOT_UPDATES;
+
+        if ($offset !== null) {
+            $telegraph->data['offset'] = $offset;
+        }
+
+        if ($limit !== null) {
+            $telegraph->data['limit'] = $limit;
+        }
+
+        if ($timeout !== null) {
+            $telegraph->data['timeout'] = $timeout;
+        }
+
+        if ($allowedUpdates !== null) {
+            $telegraph->data['allowed_updates'] = $allowedUpdates;
+        }
 
         return $telegraph;
     }
@@ -260,7 +269,11 @@ trait HasBotsAndChats
     {
         $telegraph = clone $this;
         $telegraph->endpoint = self::ENDPOINT_SET_CHAT_MENU_BUTTON;
-        $telegraph->data['chat_id'] = $this->getChatId();
+
+        if ($this->getChatIfAvailable() !== null) {
+            $telegraph->data['chat_id'] = $this->getChatId();
+        }
+
 
         return SetChatMenuButtonPayload::makeFrom($telegraph);
     }
@@ -394,39 +407,7 @@ trait HasBotsAndChats
 
         return $telegraph;
     }
-    public function approveChatJoinRequest($chatId, $userId): Telegraph
-    {
-        $telegraph = clone $this;
 
-        $telegraph->endpoint = self::ENDPOINT_APPROVE_CHAT_JOIN_REQUEST;
-        $telegraph->data['chat_id'] = $chatId;
-        $telegraph->data['user_id'] = $userId;
-
-        return $telegraph;
-    }
-    public function videoNote($chatId, $path, $filename=null): Telegraph
-    {
-        $telegraph = clone $this;
-
-        $telegraph->endpoint = self::ENDPOINT_SEND_VIDEO_NOTE;
-        $telegraph->data['chat_id'] = $chatId;
-        if (File::exists($path)) {
-            $maxSizeMb = config('telegraph.attachments.video.max_size_mb', 50);
-
-
-            if (($size = $telegraph->fileSizeInMb($path)) > $maxSizeMb) {
-                throw FileException::documentSizeExceeded($size, $maxSizeMb);
-            }
-
-            $telegraph->files->put('video_note', new Attachment($path, $filename));
-        } else {
-            $telegraph->data['video_note'] = $path;
-            $telegraph->data['duration'] ??= '';
-            $telegraph->data['thumbnail'] ??= '';
-            $telegraph->data['length'] ??= '';
-        }
-        return $telegraph;
-    }
     public function banChatMember(string $userId): Telegraph
     {
         $telegraph = clone $this;

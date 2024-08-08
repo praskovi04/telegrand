@@ -2,7 +2,7 @@
 
 /** @noinspection PhpDocSignatureIsNotCompleteInspection */
 
-namespace DefStudio\Telegraph\DTO;
+namespace Praskovi04\Telegrand\DTO;
 
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Support\Collection;
@@ -81,6 +81,6 @@ class CallbackQuery implements Arrayable
             'from' => $this->from->toArray(),
             'message' => $this->message?->toArray(),
             'data' => $this->data->toArray(),
-        ]);
+        ], fn ($value) => $value !== null);
     }
 }

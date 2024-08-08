@@ -2,7 +2,7 @@
 
 /** @noinspection PhpDocSignatureIsNotCompleteInspection */
 
-namespace DefStudio\Telegraph\DTO;
+namespace Praskovi04\Telegrand\DTO;
 
 use Illuminate\Contracts\Support\Arrayable;
 
@@ -57,6 +57,6 @@ class Chat implements Arrayable
             'id' => $this->id,
             'type' => $this->type,
             'title' => $this->title,
-        ]);
+        ], fn ($value) => $value !== null);
     }
 }

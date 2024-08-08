@@ -6,12 +6,12 @@
 
 /** @noinspection PhpUnhandledExceptionInspection */
 
-namespace DefStudio\Telegraph\Concerns;
+namespace Praskovi04\Telegrand\Concerns;
 
-use DefStudio\Telegraph\Exceptions\KeyboardException;
-use DefStudio\Telegraph\Keyboard\Keyboard;
-use DefStudio\Telegraph\Keyboard\ReplyKeyboard;
-use DefStudio\Telegraph\Telegraph;
+use Praskovi04\Telegrand\Exceptions\KeyboardException;
+use Praskovi04\Telegrand\Keyboard\Keyboard;
+use Praskovi04\Telegrand\Keyboard\ReplyKeyboard;
+use Praskovi04\Telegrand\Telegraph;
 
 /**
  * @mixin Telegraph

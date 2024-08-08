@@ -1,8 +1,8 @@
 <?php
 
-namespace DefStudio\Telegraph\Commands;
+namespace Praskovi04\Telegrand\Commands;
 
-use DefStudio\Telegraph\Models\TelegraphBot;
+use Praskovi04\Telegrand\Models\TelegraphBot;
 use Illuminate\Console\Command;
 
 class CreateNewBotCommand extends Command

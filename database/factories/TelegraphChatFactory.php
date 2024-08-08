@@ -1,9 +1,9 @@
 <?php
 
-namespace DefStudio\Telegraph\Database\Factories;
+namespace Praskovi04\Telegrand\Database\Factories;
 
-use DefStudio\Telegraph\Models\TelegraphBot;
-use DefStudio\Telegraph\Models\TelegraphChat;
+use Praskovi04\Telegrand\Models\TelegraphBot;
+use Praskovi04\Telegrand\Models\TelegraphChat;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class TelegraphChatFactory extends Factory

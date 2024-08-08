@@ -2,7 +2,7 @@
 
 /** @noinspection PhpDocSignatureIsNotCompleteInspection */
 
-namespace DefStudio\Telegraph\DTO;
+namespace Praskovi04\Telegrand\DTO;
 
 use Illuminate\Contracts\Support\Arrayable;
 
@@ -88,6 +88,6 @@ class ChatMember implements Arrayable
             'custom_title' => $this->custom_title,
             'is_member' => $this->is_member,
             'until_date' => $this->until_date,
-        ]);
+        ], fn ($value) => $value !== null);
     }
 }

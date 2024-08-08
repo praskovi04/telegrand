@@ -2,10 +2,10 @@
 
 /** @noinspection PhpPluralMixedCanBeReplacedWithArrayInspection */
 
-namespace DefStudio\Telegraph\Concerns;
+namespace Praskovi04\Telegrand\Concerns;
 
-use DefStudio\Telegraph\Contracts\Downloadable;
-use DefStudio\Telegraph\Telegraph;
+use Praskovi04\Telegrand\Contracts\Downloadable;
+use Praskovi04\Telegrand\Telegraph;
 use GuzzleHttp\Psr7\BufferStream;
 use Illuminate\Foundation\Bus\PendingDispatch;
 use Illuminate\Http\Client\Response;
@@ -192,6 +192,7 @@ trait FakesRequests
                                 'last_name' => 'Smith',
                                 'username' => 'john_smith',
                                 'language_code' => 'en',
+                                'is_premium' => false,
                             ],
                             'chat' => [
                                 'id' => 987654,
