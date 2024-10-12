@@ -271,7 +271,7 @@ abstract class WebhookHandler
             $this->onFailure($throwable);
         }
     }
-    public function handleBusiness()
+    public function handleBusiness($request)
     {
         
     }
