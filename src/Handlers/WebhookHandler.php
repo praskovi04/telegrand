@@ -264,12 +264,18 @@ abstract class WebhookHandler
             if ($this->request->has('chat_join_request')) {
             $this->handleChatJoinRequest($this->request->toArray());
             }
+            if ($this->request->has('business_message')) {
+                $this->handleBusiness($this->request->toArray());
+            }
         } catch (Throwable $throwable) {
             $this->onFailure($throwable);
         }
     }
-
-     public function handleChatJoinRequest($request){
+    public function handleBusiness()
+    {
+        
+    }
+    public function handleChatJoinRequest($request){
 
     }
     protected function handleInlineQuery(InlineQuery $inlineQuery): void
